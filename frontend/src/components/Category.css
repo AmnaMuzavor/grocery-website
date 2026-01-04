@@ -1,0 +1,69 @@
+* {
+  font-family: 'Inter', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.categories {
+  padding: 40px 178px;
+}
+
+.categories h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Grid responsive */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+/* Card base */
+.category-card {
+  padding: 20px;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+}
+
+.category-card span {
+  font-size: 32px;
+}
+
+.category-card p {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* 🎨 Different colors */
+.green { background: #d1fae5; }
+.blue { background: #dbeafe; }
+.red { background: #fee2e2; }
+.purple { background: #ede9fe; }
+.yellow { background: #fef9c3; }
+.pink { background: #fce7f3; }
+
+/* 📱 Responsive */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categories h2 {
+    font-size: 26px;
+  }
+}

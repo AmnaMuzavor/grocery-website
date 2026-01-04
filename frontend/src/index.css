@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+* {
+  font-family: 'Inter', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* .features-container {
+    margin-top: 194px;
+} */
+ 
+.features {
+    justify-content: space-evenly;
+    display: flex;
+    gap: 30px;
+    margin: 194px 0px 44px 0px;
+    align-items: center;
+    padding: 60px 20px;
+    background: #ecfdf5;
+}
+
+.feature-box {
+  text-align: center;
+}
+
+.icon {
+  font-size: 32px;
+  background: #d1fae5;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.feature-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.feature-box p {
+  font-size: 14px;
+  color: #059669;
+}
+
+/* ===== TOP PICKS SECTION ===== */
+.products {
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.products h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 25px;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Grid Layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Product Card */
+.card {
+  /* background: #ffffff; */
+  border-radius: 18px;
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Product Image */
+.card img {
+  width: 94%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 10px;
+}
+
+/* Featured Badge */
+.badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background-color: #16a34a;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Category Text */
+.category {
+  font-size: 11px;
+  color: #16a34a;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* Product Name */
+.card h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+/* Price */
+.price {
+  font-size: 14px;
+  font-weight: 600;
+  color: #16a34a;
+}
+
+@media (max-width: 992px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
