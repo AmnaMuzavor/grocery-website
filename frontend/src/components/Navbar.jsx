@@ -43,8 +43,7 @@ const Navbar = () => {
                   padding: '6px 10px',
                   borderRadius: '20px',
                   border: '1px solid #dcfce7',
-                  outline: 'none'
-                }}
+                  outline: 'none'}}
               />
             )}
             <button

@@ -4,16 +4,16 @@ import { useContext } from "react";
 function Categories() {
 
   const categories = [
-    { id: 1, name: "Fruits & Veggies", icon: "🥕" },
-    { id: 2, name: "Dairy", icon: "🥛" },
-    { id: 3, name: "Snacks", icon: "🍿" },
-    { id: 4, name: "Beverages", icon: "🥤" },
-    { id: 5, name: "Bakery", icon: "🍞" },
-    { id: 6, name: "Sweets", icon: "🍫" },
-    { id: 7, name: "Frozen Foods", icon: "🧊" },
-    { id: 8, name: "Meat", icon: "🍗" },
-    { id: 9, name: "Seafood", icon: "🐟" },
-    { id: 10, name: "Cleaning", icon: "🧼" }
+    { id: 1, name: "Fruits & Veggies" },
+    { id: 2, name: "Dairy" },
+    { id: 3, name: "Snacks" },
+    { id: 4, name: "Beverages" },
+    { id: 5, name: "Bakery" },
+    { id: 6, name: "Sweets" },
+    { id: 7, name: "Frozen Foods"  },
+    { id: 8, name: "Meat" },
+    { id: 9, name: "Seafood" },
+    { id: 10, name: "Cleaning" }
   ];
 
   const colors = [

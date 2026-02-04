@@ -1,8 +1,8 @@
 import React from 'react'
 import '../index.css'
 import  strawberry from '../assets/strawberry.jpg'
-import avocado from '../assets/avacado.jpg'
-import banana from '../assets/bananas.jpg'
+import Avocado from '../assets/Avocado.jpg'
+import banana from '../assets/banana.jpg'
 import greens from '../assets/spinach.jpg'
 
 const Toppicks = () => {
@@ -22,7 +22,7 @@ const Toppicks = () => {
           </div>
 
           <div className="card">
-            <img src={avocado} alt="Avocado" />
+            <img src={Avocado} alt="Avocado" />
             <span className="badge">Featured</span>
             <p className="category">Fruits</p>
             <h3>Avocado</h3>

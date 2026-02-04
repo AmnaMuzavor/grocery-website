@@ -6,6 +6,10 @@ import Navbar from './components/Navbar.jsx'
 import { AppContext } from './context/AppContext.jsx'
 import MyOrders from './pages/MyOrders.jsx'
 import Auth from './models/Auth.jsx'
+import AddProductAdmin from './pages/AddProductsAdmin.jsx'
+import CategoriesAdmin from './pages/CategoriesAdmin.jsx'
+import admin from './pages/admin.jsx'
+
 
 
 const App = () => {
@@ -22,6 +26,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
 <Route  path="/Cart" element={<Cart />} />
+   <Route path="/admin/categories" element={<CategoriesAdmin />} />
+          <Route path="/admin/products" element={<AddProductAdmin />} />
         </Routes>
 
       </div>
