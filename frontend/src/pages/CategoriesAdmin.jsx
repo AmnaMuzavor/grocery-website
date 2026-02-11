@@ -6,8 +6,8 @@ import removeicon from '../assets/removeicon.png'
 
 export default function CategoriesAdmin() {
   const [showForm, setShowForm] = useState(false);
-
-  // dummy data 
+ 
+ 
   const [categories, setCategories] = useState([
     {
       id: 1,

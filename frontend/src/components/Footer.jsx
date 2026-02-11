@@ -10,7 +10,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-top">
 
-        {/* Brand */}
+      
         <div className="footer-brand">
           <div className="logo">
             <img src="" alt="Essentials Logo" />
@@ -19,7 +19,7 @@ function Footer() {
           <p>We deliver quality at your doorstep all in your clicks.</p>
         </div>
 
-        {/* Pages */}
+        
         <div className="footer-links">
           <h4>Pages</h4>
           <a href="#">Shop</a>
@@ -28,7 +28,7 @@ function Footer() {
           <a href="#">Home</a>
         </div>
 
-        {/* Categories */}
+      
         <div className="footer-links">
           <h4>Categories</h4>
           <a href="#">Fruits</a>
@@ -37,7 +37,7 @@ function Footer() {
           <a href="#">Beverages</a>
         </div>
 
-        {/* Locations */}
+     
         <div className="footer-links">
           <h4>Locations</h4>
           <p>Goa </p>

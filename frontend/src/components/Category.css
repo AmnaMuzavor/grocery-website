@@ -13,14 +13,15 @@
   margin-bottom: 20px;
 }
 
-/* Grid responsive */
+
+/* //responsive */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 16px;
 }
 
-/* Card base */
+
 .category-card {
   padding: 20px;
   border-radius: 16px;
@@ -43,7 +44,7 @@
   margin-top: 8px;
 }
 
-/* 🎨 Different colors */
+
 .green { background: #d1fae5; }
 .blue { background: #dbeafe; }
 .red { background: #fee2e2; }
@@ -51,7 +52,7 @@
 .yellow { background: #fef9c3; }
 .pink { background: #fce7f3; }
 
-/* 📱 Responsive */
+
 @media (max-width: 1024px) {
   .category-grid {
     grid-template-columns: repeat(4, 1fr);

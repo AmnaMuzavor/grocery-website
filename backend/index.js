@@ -1,24 +1,33 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./config/config.json');
+const db = require('./models');  
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+const authRoutes = require("./routes/authRoutes");
+app.use("/api/auth", authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Grocery Backend Running');
 });
 
-// app.get('/api/products', (req, res) => {
-//   const sql = 'SELECT * FROM products';
-//   db.query(sql, (err, results) => {
-//     if (err) return res.status(500).json(err);
-//     res.json(results);
+const verifyToken = require("./middleware/authMiddleware");
+
+// app.get("/api/test", verifyToken, (req, res) => {
+//   res.json({
+//     message: "You are logged in",
+//     user: req.user
 //   });
 // });
 
-const PORT = 5001;
-app.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}`);
+db.sequelize.sync().then(() => {
+  console.log("Database connected");
+
+  const PORT = 5001;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
 });

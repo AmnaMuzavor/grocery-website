@@ -19,7 +19,6 @@
 
 }
 
-/* Brand */
 .footer-brand p {
   font-size: 14px;
   color: #374151;
@@ -27,7 +26,6 @@
   max-width: 260px;
 }
 
-/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -45,7 +43,7 @@
   color: #15803d;
 }
 
-/* Links */
+
 .footer-links h4 {
   font-size: 14px;
   font-weight: 600;
@@ -61,7 +59,6 @@
   text-decoration: none;
 }
 
-/* Bottom */
 .footer-bottom {
   border-top: 1px solid #d1d5db;
   padding: 14px 20px;
@@ -76,7 +73,7 @@
   color: #15803d;
 }
 
-/* Social icons */
+
 .social-icons {
   display: flex;
   gap: 14px;
@@ -88,7 +85,7 @@
   cursor: pointer;
 }
 
-/* Responsive */
+
 @media (max-width: 900px) {
   .footer-top {
     grid-template-columns: 1fr 1fr;

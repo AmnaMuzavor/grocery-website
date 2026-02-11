@@ -23,7 +23,7 @@
   }
 }
 
-/* left side */
+
 .hero-text {
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@
   cursor: pointer;
 }
 
-/* ryt side */
+
 .hero-image-wrapper {
   position: relative;
   max-width: 420px;

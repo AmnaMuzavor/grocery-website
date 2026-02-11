@@ -11,6 +11,14 @@ const Navbar = () => {
 
   const [showSearch, setShowSearch] = useState(false)
   const { user, setUser } = React.useContext(AppContext);
+  
+    const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+    alert("Logged out successfully");
+  };
+
 
   return (
     <header className="header">
@@ -53,13 +61,18 @@ const Navbar = () => {
               <img src={searchIcon} alt="Search" width="16" />
             </button>
 
-              <button className="search-btn">
-              <img src={accountIcon} alt="Account" width="16" />
+              {/* <button className="search-btn">
+              <img src={accountIcon} alt="Account" width="16" /> */}
               {/* <ul className="hidden hover:block absolute top-10 right-0 bg-white shadow-md rounded-md p-4">
                 <li >My orders</li>
                 <li>Log out</li>
               </ul> */}
-            </button>
+            {/* </button> */}
+
+            <Link to="/account" className="search-btn">
+  <img src={accountIcon} alt="Account" width="16" />
+</Link>
+
 
             <button className="cart-btn">
               <img src={cartIcon} alt="Cart" className="cart-icon" />

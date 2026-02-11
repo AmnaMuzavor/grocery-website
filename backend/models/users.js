@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     role: {
-      type: DataTypes.ENUM("customer", "admin", "delivery"),
+      type: DataTypes.ENUM("customer", "admin"),
       defaultValue: "customer"
     }
   }, {
@@ -34,12 +34,17 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: "updated_at"
   });
 
+  // Users.associate = (models) => {
+  //   Users.hasMany(models.Address, {
+  //     foreignKey: "user_id",
+  //     onDelete: "CASCADE"
+  //   });
+  // };
   Users.associate = (models) => {
-    Users.hasMany(models.Address, {
-      foreignKey: "user_id",
-      onDelete: "CASCADE"
-    });
-  };
+  Users.hasOne(models.Cart, { foreignKey: "user_id", onDelete: "CASCADE" });
+  Users.hasMany(models.Order, { foreignKey: "user_id" });
+};
+
 
   return Users;
 };

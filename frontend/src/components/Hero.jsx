@@ -8,7 +8,6 @@ const Hero = () => {
       <div className="hero-container">
         <div className="hero-grid">
 
-          {/* LEFT SIDE */}
           <div className="hero-text">
             <span className="hero-badge">Fresh & Organic</span>
 
@@ -27,7 +26,6 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
           <div className="hero-image-wrapper">
             <div className="hero-image-bg"></div>
 

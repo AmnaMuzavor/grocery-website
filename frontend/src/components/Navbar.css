@@ -32,7 +32,7 @@
             height: 64px;
         }
 
-        /* Mobile Menu Button */
+     
         .mobile-menu-btn {
             display: flex;
             width: 40px;
@@ -159,7 +159,7 @@
             justify-content: center;
         } */
 
-        /* Responsive - Tablet and Up */
+   
         @media (min-width: 640px) {
             .header-flex {
                 height: 80px;

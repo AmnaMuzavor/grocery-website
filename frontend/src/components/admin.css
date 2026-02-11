@@ -99,7 +99,7 @@
 
 .card-actions button {
   
-  padding: 6px;              /* smaller padding */
+  padding: 6px;            
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -107,12 +107,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;               /* fixed square size */
+  width: 36px;              
   height: 36px;
 }
 
 .card-actions button img {
-  width: 15px;               /* icon size */
+  width: 15px;              
   height: 15px;
 }
 

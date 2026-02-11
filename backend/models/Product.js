@@ -9,19 +9,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(200),
       allowNull: false
     },
-    description: {
-      type: DataTypes.TEXT
-    },
-    image_url: {
-      type: DataTypes.STRING(255)
-    },
+    description: DataTypes.TEXT,
+    image_url: DataTypes.STRING(255),
     price: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
-    discount_price: {
-      type: DataTypes.DECIMAL(10, 2)
-    },
+    discount_price: DataTypes.DECIMAL(10, 2),
     unit: {
       type: DataTypes.STRING(50),
       allowNull: false

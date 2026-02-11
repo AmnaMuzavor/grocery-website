@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import {Route, Routes, useLocation} from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import Navbar from './components/Navbar.jsx'
@@ -9,25 +9,34 @@ import Auth from './models/Auth.jsx'
 import AddProductAdmin from './pages/AddProductsAdmin.jsx'
 import CategoriesAdmin from './pages/CategoriesAdmin.jsx'
 import admin from './pages/admin.jsx'
+import Signup from './pages/Signup.jsx'
+import Login from './pages/Login.jsx'
+import Account from "./pages/Account";
+
+
+
 
 
 
 const App = () => {
   const { isseller } = useContext(AppContext);
-  const issellerPath=useLocation().pathname.includes('/seller');
-  
+  const issellerPath = useLocation().pathname.includes('/seller');
+
   return (
-    
+
     <div>
-     {issellerPath ? null : <Navbar />}
-     {/* {showUserLoggedIn ? <Auth /> : null} */}
+      {issellerPath ? null : <Navbar />}
+      {/* {showUserLoggedIn ? <Auth /> : null} */}
 
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-<Route  path="/Cart" element={<Cart />} />
-   <Route path="/admin/categories" element={<CategoriesAdmin />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/admin/categories" element={<CategoriesAdmin />} />
           <Route path="/admin/products" element={<AddProductAdmin />} />
+          <Route path='/auth/signup' element={<Signup />} />
+          <Route path='/auth/login' element={<Login />} />
+          <Route path="/account" element={<Account />} />
         </Routes>
 
       </div>
