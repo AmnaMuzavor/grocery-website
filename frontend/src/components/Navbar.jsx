@@ -29,7 +29,7 @@ const Navbar = () => {
 
           <div className="logo">
             {/* <img src={logo} alt="Logo" width="32" /> */}
-           <div class="logo-icon">
+           <div className="logo-icon">
                         <span>E</span>
                     </div>
             <span className="logo-text">Essentials</span>

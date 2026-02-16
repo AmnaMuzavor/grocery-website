@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import AdminSidebar from "../components/AdminSidebar";
-import '../components/admin.css'
+import "../components/admin.css";
 
 export default function AddProductAdmin() {
+
+  const [showForm, setShowForm] = useState(false);
+
   const [product, setProduct] = useState({
     name: "",
     productId: "",
@@ -13,10 +16,10 @@ export default function AddProductAdmin() {
     brand: "",
     expiry: "",
     description: "",
-    image: null,
+    mainImage: null,
+    images: [],
   });
 
-  
   const categories = [
     "Fruits & Vegetables",
     "Dairy",
@@ -29,8 +32,12 @@ export default function AddProductAdmin() {
     setProduct({ ...product, [name]: value });
   };
 
-  const handleImageChange = (e) => {
-    setProduct({ ...product, image: e.target.files[0] });
+  const handleMainImageChange = (e) => {
+    setProduct({ ...product, mainImage: e.target.files[0] });
+  };
+
+  const handleImagesChange = (e) => {
+    setProduct({ ...product, images: Array.from(e.target.files) });
   };
 
   const handleSubmit = (e) => {
@@ -42,9 +49,10 @@ export default function AddProductAdmin() {
     }
 
     console.log("Product Added:", product);
-    alert("Product added successfully (check console)");
+    alert("Product added successfully");
 
-    
+    setShowForm(false);
+
     setProduct({
       name: "",
       productId: "",
@@ -55,7 +63,8 @@ export default function AddProductAdmin() {
       brand: "",
       expiry: "",
       description: "",
-      image: null,
+      mainImage: null,
+      images: [],
     });
   };
 
@@ -64,95 +73,151 @@ export default function AddProductAdmin() {
       <AdminSidebar />
 
       <main className="content">
-        <h3>Add Product</h3>
 
-        <form className="product-form" onSubmit={handleSubmit}>
-          <label>Product Name</label>
-          <input
-            type="text"
-            name="name"
-            value={product.name}
-            onChange={handleChange}
-          />
+        {!showForm && (
+          <>
+            <button
+              className="add-product-btn"
+              onClick={() => setShowForm(true)}
+            >
+              Add Product
+            </button>
 
-          <label>Product ID</label>
-          <input
-            type="text"
-            name="productId"
-            value={product.productId}
-            onChange={handleChange}
-          />
+            <table className="product-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
 
-          <label>Product Image</label>
-          <input type="file" onChange={handleImageChange} />
+              <tbody>
+                <tr>
+                  <td>
+                    <img
+                      src="https://via.placeholder.com/60"
+                      alt="product"
+                      className="product-image"
+                    />
+                  </td>
+                  <td>Fruits & Vegetables</td>
+                  <td>Rs.150 / kg</td>
+                  <td>
+                    <div className="stock-toggle"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </>
+        )}
 
-          <label>Category</label>
-          <select
-            name="category"
-            value={product.category}
-            onChange={handleChange}
-          >
-            <option value="">Select category</option>
-            {categories.map((cat, index) => (
-              <option key={index}>{cat}</option>
-            ))}
-          </select>
+        {showForm && (
+          <>
+            <h3>Add Product</h3>
 
-          <label>Price</label>
-          <input
-            type="number"
-            name="price"
-            value={product.price}
-            onChange={handleChange}
-          />
-
-          <div className="row">
-            <div>
-              <label>Quantity</label>
+            <form className="product-form" onSubmit={handleSubmit}>
+              <label>Product Name</label>
               <input
-                type="number"
-                name="quantity"
-                value={product.quantity}
+                type="text"
+                name="name"
+                value={product.name}
                 onChange={handleChange}
               />
-            </div>
 
-            <div>
-              <label>Stock</label>
+              <label>Product ID</label>
               <input
-                type="number"
-                name="stock"
-                value={product.stock}
+                type="text"
+                name="productId"
+                value={product.productId}
                 onChange={handleChange}
               />
-            </div>
-          </div>
 
-          <label>Brand</label>
-          <input
-            type="text"
-            name="brand"
-            value={product.brand}
-            onChange={handleChange}
-          />
+              <label>Main Product Image</label>
+              <input type="file" onChange={handleMainImageChange} />
 
-          <label>Expiry Date</label>
-          <input
-            type="date"
-            name="expiry"
-            value={product.expiry}
-            onChange={handleChange}
-          />
+              <label>Additional Product Images</label>
+              <input type="file" multiple onChange={handleImagesChange} />
 
-          <label>Description</label>
-          <textarea
-            name="description"
-            value={product.description}
-            onChange={handleChange}
-          />
+              <label>Category</label>
+              <select
+                name="category"
+                value={product.category}
+                onChange={handleChange}
+              >
+                <option value="">Select category</option>
+                {categories.map((cat, index) => (
+                  <option key={index}>{cat}</option>
+                ))}
+              </select>
 
-          <button type="submit">Add Product</button>
-        </form>
+              <label>Price</label>
+              <input
+                type="number"
+                name="price"
+                value={product.price}
+                onChange={handleChange}
+              />
+
+              <div className="row">
+                <div>
+                  <label>Quantity</label>
+                  <input
+                    type="number"
+                    name="quantity"
+                    value={product.quantity}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div>
+                  <label>Stock</label>
+                  <input
+                    type="number"
+                    name="stock"
+                    value={product.stock}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              <label>Brand</label>
+              <input
+                type="text"
+                name="brand"
+                value={product.brand}
+                onChange={handleChange}
+              />
+
+              <label>Expiry Date</label>
+              <input
+                type="date"
+                name="expiry"
+                value={product.expiry}
+                onChange={handleChange}
+              />
+
+              <label>Description</label>
+              <textarea
+                name="description"
+                value={product.description}
+                onChange={handleChange}
+              />
+
+              <button type="submit">Add Product</button>
+
+              <button
+                type="button"
+                className="cancel-btn"
+                onClick={() => setShowForm(false)}
+              >
+                Cancel
+              </button>
+            </form>
+          </>
+        )}
+
       </main>
     </div>
   );
