@@ -298,7 +298,7 @@
 }
 
 /* Stock Toggle Style */
-.stock-toggle {
+/* .stock-toggle {
   width: 45px;
   height: 22px;
   background: #1f6b1f;
@@ -317,4 +317,40 @@
   position: absolute;
   top: 2px;
   right: 3px;
+} */
+.stock-toggle {
+  width: 45px;
+  height: 22px;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  margin: auto;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: #ccc;   /* default grey */
+  transition: background 0.3s;
+}
+
+/* Green when available */
+.stock-toggle.available {
+  background: #1f6b1f;
+}
+
+/* Circle */
+.stock-toggle::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 3px;   /* default left */
+  transition: 0.3s;
+}
+
+/* Move circle to right when available */
+.stock-toggle.available::before {
+  left: 24px;
 }

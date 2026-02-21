@@ -16,7 +16,16 @@ app.use("/api/auth", authRoutes);
 const adminRoutes = require("./routes/adminRoutes");
 app.use("/api/admin", adminRoutes);
 
+
+
 app.use("/uploads", express.static("uploads"));
+
+
+
+const categoryRoutes = require("./routes/categoryRoutes");
+
+app.use("/api", categoryRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('Grocery Backend Running');

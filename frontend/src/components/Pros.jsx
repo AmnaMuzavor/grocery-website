@@ -5,22 +5,22 @@ import '../index.css'
 const Pros = () => {
   return (
     <div className='features-container'>
-      <div class="features">
-  <div class="feature-box">
-    <div class="icon">🚚</div>
+      <div className="features">
+  <div className="feature-box">
+    <div className="icon">🚚</div>
     <h3>Free Delivery</h3>
     <p>On orders over $50</p>
   </div>
 
 
-  <div class="feature-box">
-    <div class="icon">🌿</div>
+  <div className="feature-box">
+    <div className="icon">🌿</div>
     <h3>100% Organic</h3>
     <p>Certified fresh produce</p>
   </div>
 
-  <div class="feature-box">
-    <div class="icon">💳</div>
+  <div className="feature-box">
+    <div className="icon">💳</div>
     <h3>Secure Payment</h3>
     <p>Safe checkout</p>
   </div>

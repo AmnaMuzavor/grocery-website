@@ -6,19 +6,19 @@ import Banner1 from '../assets/Banner1.jpg'
 
 const Banners = () => {
   return (
-    <section class="bsection">
-    <div class="bcontainer">
-      <div class="banner-grid">
+    <section className="bsection">
+    <div className="bcontainer">
+      <div className="banner-grid">
 
-        <div class="banner green left-img">
-          <div class="banner-text">
+        <div className="banner green left-img">
+          <div className="banner-text">
             <h3>Get your fresh seasonals in clicks</h3>
           </div>
           <img src={Orange} alt="Fresh citrus" />
         </div>
 
-        <div class="banner yellow">
-          <div class="banner-text">
+        <div className="banner yellow">
+          <div className="banner-text">
             <h3>Essentials at</h3>
             <h2>30% OFF</h2>
           </div>
@@ -27,14 +27,14 @@ const Banners = () => {
 
       
       </div>
-
-      <div class="full-banner">
-        <div class="full-banner-text">
+{/* 
+      <div className="full-banner">
+        <div className="full-banner-text">
           <h2>Freshness You Can See, Quality You Can Taste</h2>
           <p>From farm-fresh fruits to garden-picked vegetables – all in one place.</p>
         </div>
         <img src={Banner1} alt="All fruits and vegetables" />
-      </div>
+      </div> */}
 
     </div>
   </section>
