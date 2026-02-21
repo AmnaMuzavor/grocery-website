@@ -12,10 +12,9 @@ import admin from './pages/admin.jsx'
 import Signup from './pages/Signup.jsx'
 import Login from './pages/Login.jsx'
 import Account from "./pages/Account";
-
-
-
-
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import Shop from "./pages/Shop";
+import SearchedProducts from './pages/SearchedProducts.jsx'
 
 
 const App = () => {
@@ -37,6 +36,8 @@ const App = () => {
           <Route path='/auth/signup' element={<Signup />} />
           <Route path='/auth/login' element={<Login />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/shop" element={<SearchedProducts />} />
+          <Route path="/shop" element={<Shop />} />
         </Routes>
 
       </div>

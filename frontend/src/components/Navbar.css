@@ -51,6 +51,7 @@
             align-items: center;
             gap: 0.5rem;
             text-decoration: none;
+            margin: 10px;
         }
 
         .logo-icon {

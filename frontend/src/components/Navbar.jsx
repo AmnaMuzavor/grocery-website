@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import{ Link } from 'react-router-dom' 
 import { AppContext } from '../context/AppContext'
 import './Navbar.css'
-
+import { useNavigate } from "react-router-dom";
 import cartIcon from '../assets/shopping-bag.png'
 import accountIcon from '../assets/user.png'
 import searchIcon from '../assets/search.png'
 
 const Navbar = () => {
+  const navigate = useNavigate();
+const [searchText, setSearchText] = useState("");
 
   const [showSearch, setShowSearch] = useState(false)
   const { user, setUser } = React.useContext(AppContext);
@@ -28,32 +30,43 @@ const Navbar = () => {
           <button className="mobile-menu-btn">☰</button>
 
           <div className="logo">
-            {/* <img src={logo} alt="Logo" width="32" /> */}
+            <Link to="/" className="logo">
+          
            <div className="logo-icon">
                         <span>E</span>
                     </div>
             <span className="logo-text">Essentials</span>
+            </Link>
           </div>
 
           <nav className="nav">
-            <Link to="/Products">Shop</Link>
+            <Link to="/shop">Shop</Link>
             <Link to="/Products">Categories</Link>
-            <Link to="/Products">About</Link>
+            {/* <Link to="/Products">About</Link> */}
           </nav>
 
           <div className="actions">
 
             {showSearch && (
-              <input
-                type="text"
-                placeholder="Search products..."
-                style={{
-                  padding: '6px 10px',
-                  borderRadius: '20px',
-                  border: '1px solid #dcfce7',
-                  outline: 'none'}}
-              />
-            )}
+<input
+  type="text"
+  placeholder="Search products..."
+  value={searchText}
+  onChange={(e) => setSearchText(e.target.value)}
+  onKeyDown={(e) => {
+    if (e.key === "Enter") {
+    if (e.key === "Enter") {
+  navigate(`/shop?search=${searchText.trim()}`);
+}
+    }
+  }}
+  style={{
+    padding: '6px 10px',
+    borderRadius: '20px',
+    border: '1px solid #dcfce7',
+    outline: 'none'
+  }}
+/>       )}
             <button
               className="search-btn"
               onClick={() => setShowSearch(!showSearch)}
