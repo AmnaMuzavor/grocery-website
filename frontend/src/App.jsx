@@ -15,6 +15,9 @@ import Account from "./pages/Account";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Shop from "./pages/Shop";
 import SearchedProducts from './pages/SearchedProducts.jsx'
+import ProductCategory from './pages/ProductCategory.jsx'
+import Wishlist from "./pages/Wishlist";
+
 
 
 const App = () => {
@@ -38,6 +41,8 @@ const App = () => {
           <Route path="/account" element={<Account />} />
           <Route path="/shop" element={<SearchedProducts />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/ProductCategories" element={<ProductCategory />} />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Routes>
 
       </div>

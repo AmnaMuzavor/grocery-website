@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import cartIcon from '../assets/shopping-bag.png'
 import accountIcon from '../assets/user.png'
 import searchIcon from '../assets/search.png'
+import wishlistIcon from '../assets/Heart.png'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ const [searchText, setSearchText] = useState("");
 
           <nav className="nav">
             <Link to="/shop">Shop</Link>
-            <Link to="/Products">Categories</Link>
+            <Link to="/ProductCategories">Categories</Link>
             {/* <Link to="/Products">About</Link> */}
           </nav>
 
@@ -86,13 +87,14 @@ const [searchText, setSearchText] = useState("");
   <img src={accountIcon} alt="Account" width="16" />
 </Link>
 
+<Link to="/wishlist" className="search-btn">
+  <img src={wishlistIcon} alt="Wishlist" className="cart-icon" />
+</Link>
 
-            <button className="cart-btn">
-              <img src={cartIcon} alt="Cart" className="cart-icon" />
 
-            </button>
-
-            
+            <Link to="/Cart" className="cart-btn">
+  <img src={cartIcon} alt="Cart" className="cart-icon" />
+</Link>
           
 
           </div>
