@@ -1,7 +1,9 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./wishlist.css";
+import { AppContext } from "../context/AppContext";
 
 const Wishlist = () => {
+  const { wishlist, removeFromWishlist, addToCart } = useContext(AppContext);
   return (
     <div className="wishlist-container">
       <p className="breadcrumb">Home / Wishlist</p>
@@ -11,32 +13,48 @@ const Wishlist = () => {
         <h2>My Wishlist</h2>
       </div>
 
-      <div className="wishlist-item">
-        <img
-          src="https://images.unsplash.com/photo-1587735243615-c03f25aaff15"
-          alt="product"
-          className="wishlist-img"
-        />
+      {wishlist.length === 0 && <p>No items in wishlist</p>}
 
-        <div className="wishlist-info">
-          <h4>Mini Oranges</h4>
-          <p>(200-230) g</p>
-        </div>
+      {wishlist.map((item) => (
+        <div className="wishlist-item" key={item.id}>
+          <img src={item.image} alt={item.name} className="wishlist-img" />
 
-        <div className="wishlist-price">
-          <p>Each</p>
-          <span>₹120</span>
-        </div>
+          <div className="wishlist-info">
+            <h4>{item.name}</h4>
+            <p>{item.weight}</p>
+          </div>
 
-        <div className="wishlist-stock in-stock">
-          In stock
-        </div>
+          <div className="wishlist-price">
+            <p>Each</p>
+            <span>₹{item.price}</span>
+          </div>
 
-        <div className="wishlist-actions">
-          <button className="add-btn">Add to cart</button>
-          <button className="remove-btn">Remove</button>
+          <div
+            className={`wishlist-stock ${
+              item.stock ? "in-stock" : "out-stock"
+            }`}
+          >
+            {item.stock ? "In stock" : "Out of stock"}
+          </div>
+
+          <div className="wishlist-actions">
+            <button
+              className="add-btn"
+              disabled={!item.stock}
+              onClick={() => addToCart(item)}
+            >
+              Add to cart
+            </button>
+
+            <button
+              className="remove-btn"
+              onClick={() => removeFromWishlist(item.id)}
+            >
+              Remove
+            </button>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
