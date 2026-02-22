@@ -1,12 +1,15 @@
 import React,{useContext} from "react";
 import "./wishlist.css";
 import { AppContext } from "../context/AppContext";
+import { Link } from "react-router-dom";
 
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, addToCart } = useContext(AppContext);
   return (
     <div className="wishlist-container">
-      <p className="breadcrumb">Home / Wishlist</p>
+      <div className="breadcrumb">
+  <Link to="/">Home</Link> / <Link to="/Wishlist">WishList</Link>
+</div>
 
       <div className="wishlist-header">
         <i className="fa-regular fa-heart wishlist-icon"></i>
@@ -26,7 +29,7 @@ const Wishlist = () => {
 
           <div className="wishlist-price">
             <p>Each</p>
-            <span>₹{item.price}</span>
+            <span>Rs.{item.price}</span>
           </div>
 
           <div

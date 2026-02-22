@@ -1,12 +1,17 @@
 import React,{useContext} from 'react';
 import "./cart.css";
 import { AppContext } from '../context/AppContext';
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
-  const{cart,removeFromCart}=useContext(AppContext);
+  const{cart,removeFromCart,increaseQty,decreaseQty}=useContext(AppContext);
+  const navigate = useNavigate();
   return(
     <div className="cart-container">
-      <p className="breadcrumb">Home / Cart</p>
+      <div className="breadcrumb">
+  <Link to="/">Home</Link> / <Link to="/Cart">Cart</Link>
+</div>
 
       <div className="cart-header">
         <i className="fas fa-shopping-bag cart-icon"></i>
@@ -26,17 +31,18 @@ function Cart() {
 
           <div className="cart-each">
             <p>Each</p>
-            <span>₹{item.price}</span>
+            <span>Rs.{item.price}</span>
           </div>
 
-          <div className="cart-qty">
-            <p>Quantity</p>
-            <span>{item.quantity}</span>
-          </div>
+        <div className="cart-qty">
+  <button onClick={() => decreaseQty(item.id)}>-</button>
+  <span>{item.quantity}</span>
+  <button onClick={() => increaseQty(item.id)}>+</button>
+</div>
 
           <div className="cart-total">
             <p>Total</p>
-            <span>₹{item.price * item.quantity}</span>
+            <span>Rs.{item.price * item.quantity}</span>
           </div>
 
           <i
@@ -48,7 +54,10 @@ function Cart() {
 
       {cart.length > 0 && (
         <div className="proceed-container">
-          <button className="proceed-btn">Proceed →</button>
+          <button 
+  className="proceed-btn"
+  disabled={cart.length === 0}
+  onClick={() => navigate("/checkout")}>Proceed <i className="fas fa-arrow-right"></i></button>
         </div>
       )}
     </div>

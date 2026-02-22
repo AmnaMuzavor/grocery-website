@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+// dummy
+// import { useContext } from "react";
+// import { AppContext } from "../context/AppContext";
+// dummy end
+
 
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
-
+// dummy
+// const { addToWishlist, addToCart } = useContext(AppContext);
+// dummy end
   const query = new URLSearchParams(location.search);
   const search = query.get("search") || "";
 
@@ -26,6 +33,7 @@ const Shop = () => {
   }, [search]);
 
   return (
+    
     <section className="shop">
       <div className="container">
         <h2>
@@ -52,6 +60,53 @@ const Shop = () => {
           )}
         </div>
       </div>
+
+  {/* dummy */}
+      {/* <button
+  onClick={() =>
+    addToWishlist({
+      id: 1,
+      name: "Mini Oranges",
+      price: 120,
+      weight: "(200-230) g",
+      stock: true,
+      image: "https://images.unsplash.com/photo-1587735243615-c03f25aaff15"
+    })
+  }
+>
+  Add Test Item to Wishlist
+</button>
+
+<button
+  onClick={() =>
+    addToCart({
+      id: 1,
+      name: "Mini Oranges",
+      price: 120,
+      weight: "(200-230) g",
+      stock: true,
+      image: "https://images.unsplash.com/photo-1587735243615-c03f25aaff15"
+    })
+  }
+>
+  Add Test Item to Cart
+</button>
+
+
+<button
+  onClick={() =>
+    addToCart({
+      id: 2,
+      name: "kiwi",
+      price: 100,
+      weight: "(200-230) g",
+      stock: true,
+      image: "https://images.unsplash.com/photo-1587735243615-c03f25aaff15"
+    })
+  }
+>
+</button> */}
+{/* dummy end */}
     </section>
   );
 };

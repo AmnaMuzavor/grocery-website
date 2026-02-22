@@ -17,6 +17,7 @@ import Shop from "./pages/Shop";
 import SearchedProducts from './pages/SearchedProducts.jsx'
 import ProductCategory from './pages/ProductCategory.jsx'
 import Wishlist from "./pages/Wishlist";
+import Checkout from './pages/Checkout.jsx';
 
 
 
@@ -34,6 +35,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin/categories" element={<CategoriesAdmin />} />
           <Route path="/admin/products" element={<AddProductAdmin />} />
           <Route path='/auth/signup' element={<Signup />} />

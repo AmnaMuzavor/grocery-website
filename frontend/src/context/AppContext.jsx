@@ -10,24 +10,46 @@ const AppContextProvider = ({ children }) => {
 
 
   const addToCart = (product) => {
-    setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
+    setCart(prevCart => {
+      const existing = prevCart.find(item => item.id === product.id);
 
       if (existing) {
-        return prev.map(item =>
+        return prevCart.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
 
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prevCart, { ...product, quantity: 1 }];
     });
   };
 
 const removeFromCart = (id) => {
     setCart(prev => prev.filter(item => item.id !== id));
   };
+
+  const increaseQty = (id) => {
+  setCart(prev =>
+    prev.map(item =>
+      item.id === id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    )
+  );
+};
+
+const decreaseQty = (id) => {
+  setCart(prev =>
+    prev.map(item =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    )
+  );
+};
+
+
 
 
   const addToWishlist = (product) => {
@@ -42,7 +64,7 @@ const removeFromCart = (id) => {
     setWishlist(prev => prev.filter(item => item.id !== id));
   };
 
-  const value = { navigate, user, setUser,cart,wishlist,addToCart,removeFromCart,addToWishlist,removeFromWishlist };
+  const value = { navigate, user, setUser,cart,wishlist,addToCart,removeFromCart,increaseQty,decreaseQty,addToWishlist,removeFromWishlist };
 
   return (
     <AppContext.Provider value={value}>

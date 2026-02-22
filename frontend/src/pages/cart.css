@@ -53,13 +53,37 @@
 }
 
 .cart-each,
-.cart-qty,
 .cart-total {
   text-align: center;
 }
 
-.cart-qty select {
-  padding: 5px;
+.cart-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;  
+}
+
+.cart-qty button {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #999;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s ease;
+}
+
+.cart-qty button:hover {
+  background: black;
+  color: white;
+}
+
+.cart-qty span {
+   min-width: 20px;
+  text-align: center;
+  font-weight: 500;
 }
 
 .delete-icon {
@@ -80,4 +104,7 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+.proceed-btn,button i {
+  margin-left: 6px;
 }
