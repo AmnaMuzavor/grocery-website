@@ -5,7 +5,7 @@ const { Product } = require("../models");
 const { Op } = require("sequelize");
 
 
-app.get("/api/products", async (req, res) => {
+router.get("/api/products", async (req, res) => {
   try {
     const search = req.query.search;
 
