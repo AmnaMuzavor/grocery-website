@@ -17,7 +17,7 @@ import Shop from "./pages/Shop";
 import SearchedProducts from './pages/SearchedProducts.jsx'
 import ProductCategory from './pages/ProductCategory.jsx'
 import Wishlist from "./pages/Wishlist";
-
+// import ProductDetail from './pages/ProductDetail.jsx'
 
 
 const App = () => {
@@ -43,6 +43,7 @@ const App = () => {
           <Route path="/shop" element={<Shop />} />
           <Route path="/ProductCategories" element={<ProductCategory />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          {/* <Route path="/productDetail" element={<ProductDetail />} /> */}
         </Routes>
 
       </div>

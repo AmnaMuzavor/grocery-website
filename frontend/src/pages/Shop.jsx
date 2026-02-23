@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
+import Filters from "../components/Filters.jsx";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
+  const [category, setCategory] = useState("");
+const [sort, setSort] = useState("");
 
   const query = new URLSearchParams(location.search);
   const search = query.get("search") || "";
@@ -28,6 +30,16 @@ const Shop = () => {
   return (
     <section className="shop">
       <div className="container">
+        <button className="filter-btn">
+  <FontAwesomeIcon icon={faFilter} />
+  Filters
+</button>
+        <Filters
+  category={category}
+  setCategory={setCategory}
+  sort={sort}
+  setSort={setSort}
+/>
         <h2>
           {search
             ? `Search Results for "${search}"`
