@@ -25,6 +25,9 @@ app.use("/api", categoryRoutes);
 const publicRoutes = require("./routes/publicRoutes");
 app.use("/api", publicRoutes);
 
+
+
+
 // const productRoutes = require("./routes/productRoutes");
 // app.use("/api", productRoutes);
 

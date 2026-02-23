@@ -18,6 +18,7 @@ import SearchedProducts from './pages/SearchedProducts.jsx'
 import ProductCategory from './pages/ProductCategory.jsx'
 import Wishlist from "./pages/Wishlist";
 // import ProductDetail from './pages/ProductDetail.jsx'
+import ForgotPassword from './pages/ForgotPassword.jsx'
 
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/ProductCategories" element={<ProductCategory />} />
           <Route path="/wishlist" element={<Wishlist />} />
           {/* <Route path="/productDetail" element={<ProductDetail />} /> */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Routes>
 
       </div>

@@ -4,6 +4,7 @@ const { Users } = require("../models");
 
 const JWT_SECRET = "mysecretkey";
 
+
 exports.signup = async (req, res) => {
   try {
    
@@ -76,6 +77,30 @@ exports.login = async (req, res) => {
         email: user.email,
       },
     });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
+//forgot password
+exports.resetPassword = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    const user = await Users.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    user.password_hash = hashedPassword;
+    await user.save();
+
+    res.json({ message: "Password updated successfully" });
 
   } catch (error) {
     res.status(500).json({ error: error.message });

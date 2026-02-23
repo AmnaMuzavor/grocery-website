@@ -1,31 +1,30 @@
-
 const express = require("express");
 const router = express.Router();
 const { Product } = require("../models");
 const { Op } = require("sequelize");
 
-
-app.get("/api/products", async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
     const search = req.query.search;
 
-    let sql = "SELECT * FROM products";
-    let values = [];
+    let whereCondition = {};
 
     if (search && search.trim() !== "") {
-      sql += " WHERE name LIKE ?";
-      values.push(`%${search}%`);
+      whereCondition.name = {
+        [Op.like]: `%${search}%`,
+      };
     }
 
-    const [rows] = await db.execute(sql, values);
+    const products = await Product.findAll({
+      where: whereCondition,
+    });
 
-    res.json({ products: rows });
+    res.json({ products });
 
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Server error" });
   }
 });
-
 
 module.exports = router;

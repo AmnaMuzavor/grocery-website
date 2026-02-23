@@ -1,6 +1,5 @@
 import "./Footer.css";
-
-// import logo from "../assets/logo.png";
+import { Link } from "react-router-dom"; 
 import Insta from "../assets/Insta.png";
 import Twitter from "../assets/Twitter.png";
 import Facebook from "../assets/Facebook.png";
@@ -10,54 +9,67 @@ function Footer() {
     <footer className="footer">
       <div className="footer-top">
 
-      
+       
         <div className="footer-brand">
-          <div className="logo">
-            <img src="" alt="Essentials Logo" />
-            <span>Essentials</span>
+          <div className="flogo">
+            <Link to="/" className="logo" style={{ textDecoration: "none", color: "inherit" }}>
+              <div className="logo-icon">
+                <span>E</span>
+              </div>
+              <span className="logo-text">Essentials</span>
+            </Link>
           </div>
           <p>We deliver quality at your doorstep all in your clicks.</p>
         </div>
 
-        
+    
         <div className="footer-links">
           <h4>Pages</h4>
-          <a href="#">Shop</a>
-          <a href="#">About</a>
-          <a href="#">Categories</a>
-          <a href="#">Home</a>
+          <Link to="/shop">Shop</Link>
+          <Link to="/about">About</Link>
+          <Link to="/categories">Categories</Link>
+          <Link to="/">Home</Link>
         </div>
 
       
         <div className="footer-links">
           <h4>Categories</h4>
-          <a href="#">Fruits</a>
-          <a href="#">Dairy</a>
-          <a href="#">Snacks</a>
-          <a href="#">Beverages</a>
+          <Link to="/fruits">Fruits</Link>
+          <Link to="/dairy">Dairy</Link>
+          <Link to="/snacks">Snacks</Link>
+          <Link to="/beverages">Beverages</Link>
         </div>
 
-     
         <div className="footer-links">
           <h4>Locations</h4>
-          <p>Goa </p>
-          <p> Kerala </p>
-          <p> Mumbai </p>
-          <p> Pune </p>
+          <p>Goa</p>
+          <p>Kerala</p>
+          <p>Mumbai</p>
+          <p>Pune</p>
         </div>
-
+       
+        <div className="footer-links">
+           <div className="social-icons">
+          <h4>Socials</h4>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <img src={Insta} alt="Instagram" /> 
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <img src={Twitter} alt="X" />
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <img src={Facebook} alt="Facebook" />
+          </a>
+        </div>
         
+</div>
+
       </div>
 
-      {/* Bottom */}
+    
       <div className="footer-bottom">
-        <p>Copyright © 2026 | </p>
-
-        <div className="social-icons">
-          <img src={Insta} alt="Instagram" />
-          <img src={Twitter} alt="X" />
-          <img src={Facebook} alt="Facebook" />
-        </div>
+        <p>Copyright © 2026 | Esssentials    </p>
+        
       </div>
     </footer>
   );

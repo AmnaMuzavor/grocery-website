@@ -46,6 +46,14 @@
         }
 
         /* Logo ka css */
+        .flogo{
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            margin: 0px;
+        
+        }
         .logo {
             display: flex;
             align-items: center;
@@ -182,6 +190,9 @@ background: linear-gradient(
 
             .mobile-menu-btn {
                 display: none;
+            }
+            .flogo{
+                margin: 0px;
             }
 
             .logo-text {

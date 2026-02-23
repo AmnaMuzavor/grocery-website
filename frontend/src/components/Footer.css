@@ -13,7 +13,7 @@
   max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   gap: 40px;
      padding: 48px 0px 64px 0px;
 
@@ -63,7 +63,7 @@
   border-top: 1px solid #d1d5db;
   padding: 14px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background: #ecfdf5;
 }
@@ -76,7 +76,8 @@
 
 .social-icons {
   display: flex;
-  gap: 14px;
+  flex-direction: column;
+  /* gap: 14px; */
 }
 
 .social-icons img {
@@ -88,13 +89,19 @@
 
 @media (max-width: 900px) {
   .footer-top {
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
   }
 }
 
 @media (max-width: 500px) {
   .footer-top {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr ; */
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  }
+
+  .flogo{
+    margin: 0px;
   }
 
   .footer-bottom {
