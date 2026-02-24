@@ -1,31 +1,19 @@
 import React from "react";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-const Filters = ({ category, setCategory, sort, setSort }) => {
+const Filters = ({ sort, setSort }) => {
   return (
-    <div className="filters">
-<FontAwesomeIcon icon={faFilter} />
+    <div style={{ marginBottom: "20px" }}>
       <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
-        <option value="">All Categories</option>
-        <option value="Snacks">Snacks</option>
-        <option value="Beverages">Beverages</option>
-        <option value="Dairy">Dairy</option>
-      </select>
+        // value={sort}
+        // onChange={(e) => setSort(e.target.value)}
 
-      <select
-        value={sort}
-        onChange={(e) => setSort(e.target.value)}
+     value={sort} onChange={(e) => setSort(e.target.value)}
+        style={{ padding: "8px", borderRadius: "6px" , border: '2px solid #f6f6f6' }}
       >
-        <option value="">Sort By</option>
-        <option value="low">Price: Low to High</option>
-        <option value="high">Price: High to Low</option>
+        <option value="">Sort By Price</option>
+        <option value="low">Low to High</option>
+        <option value="high">High to Low</option>
       </select>
-
     </div>
   );
 };

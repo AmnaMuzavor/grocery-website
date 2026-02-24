@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 // import "../index.css";
 import axios from "axios";
+import Filters from "./Filters";
 
 const Toppicks = () => {
 
   const [products, setProducts] = useState([]);
-
+const [sort, setSort] = useState("");
   const fetchProducts = async () => {
     try {
       const res = await axios.get("http://localhost:5001/api/products");
@@ -23,10 +24,17 @@ const Toppicks = () => {
     <section className="products">
       <div className="container">
         <h2>Top Picks</h2>
-
+<Filters sort={sort} setSort={setSort} />
         <div className="product-grid">
 
-          {products.map((item) => (
+       {[...products]
+  .sort((a, b) => {
+    if (sort === "low") return a.price - b.price;
+    if (sort === "high") return b.price - a.price;
+    return 0;
+  })
+  .map((item) => (
+            
             <div className="card" key={item.product_id}>
 {/* 
               <img

@@ -85,6 +85,7 @@
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  border: 2px solid #f6f6f6
 }
 
 .card:hover {
@@ -255,3 +256,4 @@
   transform: scale(1.1);
   background: #16a34a;
 }
+

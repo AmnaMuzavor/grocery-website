@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import Filters from "../components/Filters.jsx";
+import Filters from "../components/Filters";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
-  const [category, setCategory] = useState("");
+  // const [category, setCategory] = useState("");
 const [sort, setSort] = useState("");
 
   const query = new URLSearchParams(location.search);
@@ -30,23 +30,15 @@ const [sort, setSort] = useState("");
   return (
     <section className="shop">
       <div className="container">
-        <button className="filter-btn">
-  <FontAwesomeIcon icon={faFilter} />
-  Filters
-</button>
-        <Filters
-  category={category}
-  setCategory={setCategory}
-  sort={sort}
-  setSort={setSort}
-/>
-        <h2>
+     
+        <h2 style={{margin: '15px 0px'}}>
           {search
             ? `Search Results for "${search}"`
             : "All Products"}
         </h2>
+  <Filters sort={sort} setSort={setSort} />
 
-        <div className="product-grid">
+        {/* <div className="product-grid">
           {products.length === 0 ? (
             <p>No products found.</p>
           ) : (
@@ -62,7 +54,33 @@ const [sort, setSort] = useState("");
               </div>
             ))
           )}
+        </div> */}
+
+
+<div className="product-grid">
+  {products.length === 0 ? (
+    <p>No products found.</p>
+  ) : (
+    
+    [...products]
+      .sort((a, b) => {
+        if (sort === "low") return a.price - b.price;
+        if (sort === "high") return b.price - a.price;
+        return 0;
+      })
+      .map((item) => (
+        <div className="card" key={item.product_id}>
+          <img
+            src={`http://localhost:5001${item.image_url}`}
+            alt={item.name}
+          />
+          <h3>{item.name}</h3>
+          <p>{item.brand}</p>
+          <p>Rs.{item.price}</p>
         </div>
+      ))
+  )}
+</div>
       </div>
     </section>
   );

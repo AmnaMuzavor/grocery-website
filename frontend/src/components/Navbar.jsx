@@ -41,7 +41,7 @@ const [searchText, setSearchText] = useState("");
           </div>
 
           <nav className="nav">
-            <Link to="/shop">Shop</Link>
+            <Link to="/shopp">Shop</Link>
             <Link to="/ProductCategories">Categories</Link>
             {/* <Link to="/Products">About</Link> */}
           </nav>

@@ -13,13 +13,13 @@ import Signup from './pages/Signup.jsx'
 import Login from './pages/Login.jsx'
 import Account from "./pages/Account";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import Shop from "./pages/Shop";
+
 import SearchedProducts from './pages/SearchedProducts.jsx'
 import ProductCategory from './pages/ProductCategory.jsx'
 import Wishlist from "./pages/Wishlist";
 // import ProductDetail from './pages/ProductDetail.jsx'
 import ForgotPassword from './pages/ForgotPassword.jsx'
-
+import Shop from './pages/Shop'
 
 const App = () => {
   const { isseller } = useContext(AppContext);
@@ -41,7 +41,7 @@ const App = () => {
           <Route path='/auth/login' element={<Login />} />
           <Route path="/account" element={<Account />} />
           <Route path="/shop" element={<SearchedProducts />} />
-          <Route path="/shop" element={<Shop />} />
+          <Route path="/shopp" element={<Shop />} />
           <Route path="/ProductCategories" element={<ProductCategory />} />
           <Route path="/wishlist" element={<Wishlist />} />
           {/* <Route path="/productDetail" element={<ProductDetail />} /> */}
