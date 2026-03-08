@@ -1,0 +1,47 @@
+.main-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.list-section {
+  margin: 25px 20px;
+}
+
+.list-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #34d399;
+  margin-bottom: 15px;
+}
+
+.white-box {
+  background: rgb(249, 254, 245);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.about-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #064e3b;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.about-text:last-child {
+  margin-bottom: 0;
+}
+
+.promise-item strong {
+  display: block;
+  font-size: 16px;
+  color: #064e3b;
+  margin-bottom: 5px;
+}
+
+.promise-item p {
+  font-size: 16px;
+  color: #064e3b;
+  margin: 0;
+}

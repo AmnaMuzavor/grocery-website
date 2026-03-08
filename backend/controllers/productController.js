@@ -50,15 +50,7 @@ exports.createProduct = async (req, res) => {
 
 
 
-    // const product = await Product.create({
-    //   name,
-    //   description,
-    //   price,
-    //   unit,
-    //   stock_quantity,
-    //   category_id,
-    //   image_url: mainImage
-    // });
+ 
 const product = await Product.create({
   name,
   description,
@@ -89,5 +81,83 @@ const product = await Product.create({
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Error creating product" });
+  }
+};
+
+
+// Get products by category
+exports.getProductsByCategory = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: { category_id: req.params.id },
+      include: [
+        {
+          model: ProductImage,
+          attributes: ["id", "image_url"]
+        }
+      ]
+    });
+
+    res.status(200).json({ products });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching products" });
+  }
+};
+exports.getProductsByCategory = async (req, res) => {
+  try {
+    const products = await Product.findAll({
+      where: { category_id: req.params.id },
+      include: [
+        {
+          model: ProductImage,
+          attributes: ["id", "image_url"]
+        }
+      ]
+    });
+
+    res.status(200).json({ products });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error fetching products" });
+  }
+};
+
+
+exports.getSingleProduct = async (req, res) => {
+  try {
+    const product = await Product.findByPk(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+        res.json({ product });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+
+//for stock
+
+exports.toggleAvailability = async (req, res) => {
+  const { id } = req.params;
+  const { is_available } = req.body;
+
+  try {
+    const product = await Product.findByPk(id);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
+    product.is_available = is_available;
+    await product.save();
+
+    res.json({ message: "Product availability updated", product });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 };

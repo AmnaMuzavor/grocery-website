@@ -7,14 +7,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     order_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: "orders",
+        key: "order_id"
+      },
+      onDelete: "CASCADE"
+    },
+    amount: {
+      type: DataTypes.DECIMAL(10, 2)
     },
     payment_method: {
-      type: DataTypes.ENUM("UPI","Card","COD"),
+      type: DataTypes.ENUM("UPI", "Card", "COD"),
       allowNull: false
     },
     payment_status: {
-      type: DataTypes.ENUM("pending","success","failed"),
+      type: DataTypes.ENUM("pending", "success", "failed"),
       defaultValue: "pending"
     }
   }, {

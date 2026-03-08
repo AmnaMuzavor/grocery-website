@@ -1,8 +1,11 @@
 import React from 'react'
+import Category from '../components/Category.jsx'
 
 const ProductCategory = () => {
   return (
-    <div>ProductCategory</div>
+    <div>
+      <Category />
+    </div>
   )
 }
 

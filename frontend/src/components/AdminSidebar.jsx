@@ -1,29 +1,66 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './admin.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./admin.css";
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ isOpen, setIsOpen }) => {
+
+  const [notifications, setNotifications] = useState(null);
+const [showDropdown, setShowDropdown] = useState(false);
+
+useEffect(() => {
+  fetchNotifications();
+}, []);
+
+const fetchNotifications = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:5001/api/admin/notifications", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+    setNotifications(data);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
   return (
-    <aside className="sidebar">
-      <ul>
-        <li>
-          <NavLink to="/admin/categories" className={({ isActive }) => isActive ? 'active' : ''}>
-            Categories
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/products" className={({ isActive }) => isActive ? 'active' : ''}>
-            Products
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/admin/logout" className={({ isActive }) => isActive ? 'active' : ''}>
-            Log out
-          </NavLink>
-        </li>
-      </ul>
-    </aside>
+    <>
+      {/* Overlay */}
+      {isOpen && <div className="overlay" onClick={() => setIsOpen(false)}></div>}
+
+      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+        <ul>
+          <li>
+            <NavLink to="/admin/categories" onClick={() => setIsOpen(false)}>
+              Categories
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin/products" onClick={() => setIsOpen(false)}>
+              Products
+            </NavLink>
+          </li>
+          {/* <li>
+            <NavLink to="/admin/logout" onClick={() => setIsOpen(false)}>
+              Log out
+            </NavLink>
+          </li> */}
+          <li>
+  <NavLink to="/admin/notifications" onClick={() => setIsOpen(false)}>
+    Notifications
+  </NavLink>
+</li>
+        </ul>
+      </aside>
+    </>
   );
-}
+};
 
 export default AdminSidebar;

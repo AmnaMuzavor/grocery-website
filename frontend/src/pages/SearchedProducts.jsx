@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const SearchedProducts = () => {
 
   const [products, setProducts] = useState([]);
+  const { addToCart, addToWishlist } = useContext(AppContext);
 
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -43,7 +45,9 @@ const SearchedProducts = () => {
           ) : (
             products.map((item) => (
               <div className="card" key={item.product_id}>
-
+ {!item.is_available && (
+  <div className="out-of-stock-badge">Out of Stock</div>
+)}
                 {item.image_url && (
                   <img
                     src={`http://localhost:5001${item.image_url}`}
@@ -51,11 +55,36 @@ const SearchedProducts = () => {
                   />
                 )}
 <div className="card-icons">
-  <button className="icon-btn">
+  <button 
+    className="icon-btn"
+    onClick={() => {
+      addToWishlist({
+        id: item.product_id,
+        name: item.name,
+        price: item.discount_price || item.price,
+        stock: item.is_available,
+        image: item.image_url,
+        weight: item.unit
+      });
+    }}
+  >
     <i className="fa-solid fa-heart"></i>
   </button>
 
-  <button className="icon-btn">
+  <button 
+    className="icon-btn"
+    disabled={!item.is_available}
+    onClick={() => {
+      addToCart({
+        id: item.product_id,
+        name: item.name,
+        price: item.discount_price || item.price,
+        stock: item.is_available,
+        image: item.image_url,
+        weight: item.unit
+      });
+    }}
+  >
     <i className="fa-solid fa-cart-plus"></i>
   </button>
 </div>

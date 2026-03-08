@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+import { AppContext } from "../context/AppContext";
 // import "../index.css";
 import axios from "axios";
+import Filters from "./Filters";
+import { useNavigate } from "react-router-dom";
+
 
 const Toppicks = () => {
 
   const [products, setProducts] = useState([]);
+const [sort, setSort] = useState("");
+const navigate = useNavigate();
+const { addToWishlist, addToCart } = useContext(AppContext);
 
   const fetchProducts = async () => {
     try {
@@ -23,11 +30,24 @@ const Toppicks = () => {
     <section className="products">
       <div className="container">
         <h2>Top Picks</h2>
-
+<Filters sort={sort} setSort={setSort} />
         <div className="product-grid">
 
-          {products.map((item) => (
-            <div className="card" key={item.product_id}>
+       {[...products]
+  .sort((a, b) => {
+    if (sort === "low") return a.price - b.price;
+    if (sort === "high") return b.price - a.price;
+    return 0;
+  })
+  .map((item) => (
+            
+            <div className="card" key={item.product_id}
+             onClick={() => navigate(`/product/${item.product_id}`)}
+            >
+              {!item.is_available && (
+  <div className="out-of-stock-badge">Out of Stock</div>
+)}
+
 {/* 
               <img
                 src={`http://localhost:5001${item.image_url}`}
@@ -44,13 +64,47 @@ const Toppicks = () => {
 )}
 
 <div className="card-icons">
-  <button className="icon-btn">
+  {/* <button className="icon-btn">
     <i className="fa-solid fa-heart"></i>
-  </button>
+  </button> */}
 
-  <button className="icon-btn">
-    <i className="fa-solid fa-cart-plus"></i>
-  </button>
+
+  <button
+  className="icon-btn"
+  onClick={(e) => {
+    e.stopPropagation(); 
+
+    addToWishlist({
+      id: item.product_id,
+      name: item.name,
+      price: item.discount_price || item.price,
+      stock: item.is_available,
+      image: item.image_url,
+      weight: item.unit
+    });
+  }}
+>
+  <i className="fa-solid fa-heart"></i>
+</button>
+
+ <button
+  className="icon-btn"
+  disabled={!item.is_available}
+  onClick={(e) => {
+    e.stopPropagation();
+
+    addToCart({
+      id: item.product_id,
+      name: item.name,
+      price: item.discount_price || item.price,
+      stock: item.is_available,
+      image: item.image_url,
+      weight: item.unit
+    });
+  }}
+>
+  <i className="fa-solid fa-cart-plus"></i>
+</button>
 </div>
               {/* <span className="badge">Featured</span> */}
 
@@ -76,7 +130,7 @@ const Toppicks = () => {
 
   {item.discount_price ? (
     <>
-      <span style={{ fontWeight: "600", fontSize: "16px" }}>
+      <span style={{ fontWeight: "600" }}>
         Rs.{item.discount_price}/{item.unit}
       </span>
 

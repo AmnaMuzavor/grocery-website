@@ -1,7 +1,7 @@
 import React from 'react'
 import Banner from '../assets/Banner1.jpg'
 import './hero.css'
-
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <section className="hero">
@@ -20,10 +20,12 @@ const Hero = () => {
               Premium quality groceries delivered with care. Experience the freshest produce and artisanal goods.
             </p>
 
-            <div className="hero-actions">
-              <button className="btn-primary">Shop Now</button>
-              <button className="btn-secondary">Explore offers</button>
+            <Link to="/Shop" style={{textDecoration:'none'}}>
+            <div className="hero-actions" >
+              <button className="btn-primary" >Shop Now</button>
+              {/* <button className="btn-secondary">Explore offers</button> */}
             </div>
+            </Link>
           </div>
 
           <div className="hero-image-wrapper">

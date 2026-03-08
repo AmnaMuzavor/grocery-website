@@ -1,70 +1,209 @@
-import { createContext,useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-export const AppContext=createContext(null);
+import axios from "axios";
+import toast from "react-hot-toast";
+
+export const AppContext = createContext(null);
 
 const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const[cart,setCart]=useState([]);
-  const[wishlist,setWishlist]=useState([]);
 
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  const addToCart = (product) => {
-    setCart(prevCart => {
-      const existing = prevCart.find(item => item.id === product.id);
+  const [cart, setCart] = useState([]);
+  const [wishlist, setWishlist] = useState([]);
 
-      if (existing) {
-        return prevCart.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
+  const fetchCart = async (userIdParam) => {
+    const userId = userIdParam || user?.id;
+    if (!userId) return;
+
+    try {
+      const res = await axios.get(
+        `http://localhost:5001/api/cart/${userId}`
+      );
+      setCart(res.data || []);
+    } catch (err) {
+      console.error("FETCH CART ERROR:", err);
+    }
+    
+  };
+
+  useEffect(() => {
+    if (user?.id) {
+      fetchCart(user.id);
+    } else {
+      setCart([]);
+    }
+  }, [user]);
+
+  const addToCart = async (product) => {
+    if (!user) {
+      toast.error("Please login first");
+      return;
+    }
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5001/api/cart/add",
+        {
+          user_id: user.id,
+          product_id: product.id
+        }
+      );
+
+      if (res.data.exists) {
+        toast("Quantity increased");
+      } else {
+        toast.success("Added to cart");
       }
 
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
+      await fetchCart(user.id); 
+
+    } catch (err) {
+      toast.error("Something went wrong");
+      console.error("ADD CART ERROR:", err);
+    }
   };
 
-const removeFromCart = (id) => {
-    setCart(prev => prev.filter(item => item.id !== id));
+  const removeFromCart = async (product_id) => {
+    try {
+      await axios.delete(
+        `http://localhost:5001/api/cart/remove/${user.id}/${product_id}`
+      );
+
+      toast.success("Removed from cart");
+      await fetchCart(user.id);
+
+    } catch (err) {
+      toast.error("Failed to remove");
+      console.error(err);
+    }
   };
 
-  const increaseQty = (id) => {
-  setCart(prev =>
-    prev.map(item =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
-  );
-};
+  const increaseQty = async (product_id) => {
+    try {
+      await axios.put(
+        `http://localhost:5001/api/cart/increase`,
+        {
+          user_id: user.id,
+          product_id
+        }
+      );
 
-const decreaseQty = (id) => {
-  setCart(prev =>
-    prev.map(item =>
-      item.id === id && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    )
-  );
-};
+      await fetchCart(user.id);
 
-
-
-
-  const addToWishlist = (product) => {
-    setWishlist(prev => {
-      const exists = prev.find(item => item.id === product.id);
-      if (exists) return prev;
-      return [...prev, product];
-    });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
- const removeFromWishlist = (id) => {
-    setWishlist(prev => prev.filter(item => item.id !== id));
+  const decreaseQty = async (product_id) => {
+    try {
+      await axios.put(
+        `http://localhost:5001/api/cart/decrease`,
+        {
+          user_id: user.id,
+          product_id
+        }
+      );
+
+      await fetchCart(user.id);
+
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const value = { navigate, user, setUser,cart,wishlist,addToCart,removeFromCart,increaseQty,decreaseQty,addToWishlist,removeFromWishlist };
+  const clearCart = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:5001/api/cart/clear/${user.id}`
+      );
+
+      setCart([]);
+      toast.success("Cart cleared");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+  const fetchWishlist = async () => {
+    if (!user) return;
+
+    try {
+      const res = await axios.get(
+        `http://localhost:5001/api/wishlist/${user.id}`
+      );
+      setWishlist(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchWishlist();
+  }, [user]);
+
+  const addToWishlist = async (product) => {
+    if (!user) {
+      toast.error("Please login first");
+      return;
+    }
+
+    try {
+      const res = await axios.post(
+        "http://localhost:5001/api/wishlist/add",
+        {
+          user_id: user.id,
+          product_id: product.id
+        }
+      );
+
+      if (res.data.exists) {
+        toast("Already in wishlist");
+      } else {
+        toast.success("Added to wishlist");
+      }
+
+      fetchWishlist();
+    } catch (err) {
+      toast.error("Something went wrong");
+      console.error(err);
+    }
+  };
+
+  const removeFromWishlist = async (wishlist_id) => {
+    try {
+      await axios.delete(
+        `http://localhost:5001/api/wishlist/remove/${wishlist_id}`
+      );
+
+      toast.success("Removed from wishlist");
+      fetchWishlist();
+    } catch (err) {
+      toast.error("Failed to remove");
+      console.error(err);
+    }
+  };
+
+  const value = {
+    navigate,
+    user,
+    setUser,
+    cart,
+    wishlist,
+    addToCart,
+    removeFromCart,
+    increaseQty,
+    decreaseQty,
+    clearCart,
+    addToWishlist,
+    removeFromWishlist
+  };
 
   return (
     <AppContext.Provider value={value}>

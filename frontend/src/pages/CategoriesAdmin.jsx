@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import AdminSidebar from "../components/AdminSidebar";
 import '../components/admin.css';
-import editicon from '../assets/editicon.png';
-import removeicon from '../assets/removeicon.png';
+// import editicon from '../assets/editicon.png';
+// import removeicon from '../assets/removeicon.png';
+import toast from "react-hot-toast";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CategoriesAdmin() {
   const [showForm, setShowForm] = useState(false);
@@ -13,9 +16,9 @@ export default function CategoriesAdmin() {
 const [categoryImage, setCategoryImage] = useState(null);
 const [isEditing, setIsEditing] = useState(false);
 const [editId, setEditId] = useState(null);
-
-
+const [errors, setErrors] = useState({});
  
+ const [sidebarOpen, setSidebarOpen] = useState(false);
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -25,7 +28,8 @@ const [editId, setEditId] = useState(null);
       setCategories(res.data.categories);
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Failed to fetch categories");
+     toast.error(error.response?.data?.message || "Failed to fetch categories");
+      // alert(error.response?.data?.message || "Failed to fetch categories");
     }
   };
 
@@ -59,13 +63,33 @@ const [editId, setEditId] = useState(null);
   //   }
   // };
 
+const validateCategory = () => {
+  let newErrors = {};
 
+  if (!categoryName.trim()) {
+    newErrors.name = "Category name required";
+  }
+
+  if (categoryName.length > 30) {
+    newErrors.name = "Max 30 characters allowed";
+  }
+
+  // if (categoryDesc.length > 150) {
+  //   newErrors.description = "Description too long";
+  // }
+
+  if (!isEditing && !categoryImage) {
+    newErrors.image = "Category image required";
+  }
+
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
 const handleAddCategory = async () => {
-  if (!categoryName) {
-    alert("Category name is required");
-    return;
-  }
+
+    if (!validateCategory()) return;
+
 
   try {
     const token = localStorage.getItem("token");
@@ -92,18 +116,24 @@ const handleAddCategory = async () => {
       }
     );
 
-    alert("Category added successfully");
+    // alert("Category added successfully");
+
+    toast.success("Category added successfully ");
+fetchCategories();
+setShowForm(false);
+setCategoryName("");
+setCategoryDesc("");
+setCategoryImage(null);
   } catch (error) {
     console.error(error);
-    alert("Failed to add category");
+    // alert("Failed to add category");
+    toast.error(error.response?.data?.message || "Failed to add category");
   }
 };
 
 const handleUpdateCategory = async () => {
-  if (!categoryName) {
-    alert("Category name is required");
-    return;
-  }
+
+  if (!validateCategory()) return;
 
   try {
     const token = localStorage.getItem("token");
@@ -126,8 +156,8 @@ const handleUpdateCategory = async () => {
       }
     );
 
-    alert("Category updated successfully");
-
+    // alert("Category updated successfully");
+toast.success("Category updated successfully ");
     setCategoryName("");
     setCategoryDesc("");
     setCategoryImage(null);
@@ -136,7 +166,8 @@ const handleUpdateCategory = async () => {
 
     fetchCategories();
   } catch (error) {
-    alert("Error updating category");
+    // alert("Error updating category");
+    toast.error(error.response?.data?.message || "Error updating category");
   }
 };
 
@@ -150,21 +181,30 @@ const handleUpdateCategory = async () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(categories.filter((cat) => cat.category_id !== id));
-      alert("Category deleted");
+      // alert("Category deleted");
+      toast.success("Category deleted");
     } catch (error) {
       console.error(error);
-      alert(error.response?.data?.message || "Failed to delete category");
+      toast.error(error.response?.data?.message || "Failed to delete category");
+      // alert(error.response?.data?.message || "Failed to delete category");
     }
   };
 
   return (
     <div className="admin-container">
-      <AdminSidebar />
+      {/* <AdminSidebar /> */}
+      <AdminSidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       <main className="content">
         {!showForm ? (
           <>
             <div className="top-bar">
+               <button 
+    className="menu-btn" 
+    onClick={() => setSidebarOpen(true)}
+  >
+    Actions
+  </button>
               <h3>Categories</h3>
               <button className="add-category-btn" onClick={() => setShowForm(true)}>
                 Add Category
@@ -198,12 +238,14 @@ const handleUpdateCategory = async () => {
     setShowForm(true);
   }}
 >
-  <img src={editicon} alt="Edit" />
+  {/* <img src={editicon} alt="Edit" /> */}
+   <FontAwesomeIcon icon={faPenToSquare} />
 </button>
 
                     
                     <button className="delete-btn" onClick={() => handleDelete(cat.category_id)}>
-                      <img src={removeicon} alt="Delete" />
+                      {/* <img src={removeicon} alt="Delete" /> */}
+                       <FontAwesomeIcon icon={faTrash} />
                     </button>
                   </div>
                 </div>
@@ -212,6 +254,8 @@ const handleUpdateCategory = async () => {
           </>
         ) : (
           <>
+          
+         
             {/* <h3>Add Category</h3> */}
             <h3>{isEditing ? "Edit Category" : "Add Category"}</h3>
 
@@ -222,11 +266,11 @@ const handleUpdateCategory = async () => {
                 value={categoryName}
                 onChange={(e) => setCategoryName(e.target.value)}
               />
-
+{errors.name && <p className="error">{errors.name}</p>}
 
 <label>Category image</label>
               <input type="file"   onChange={(e) => setCategoryImage(e.target.files[0])} />
-
+{errors.image && <p className="error">{errors.image}</p>}
 
               <label>Description</label>
               <textarea

@@ -2,7 +2,6 @@
 const express = require("express");
 const router = express.Router();
 const { Product } = require("../models");
-// const { createCategory, getCategories, deleteCategory, uploadCategoryImage, } = require("../controllers/categoryController");
 const {
   createCategory,getCategories,deleteCategory,uploadCategoryImage,updateCategory} = require("../controllers/categoryController");
 
@@ -26,12 +25,7 @@ router.post(
   createCategory
 );
 
-// router.post(
-//   "/product",
-//   verifyToken,
-//   isAdmin,
-//   createProduct
-// );
+
 router.post(
   "/product",
   verifyToken,
@@ -131,6 +125,24 @@ router.put(
   }
 );
 
+
+router.put('/product/:id/toggle', async (req, res) => {
+  const { id } = req.params;
+  const { is_available } = req.body;
+
+  try {
+    const product = await Product.findByPk(id);
+    if (!product) return res.status(404).json({ message: "Product not found" });
+
+    product.is_available = is_available;
+    await product.save();
+
+    res.json({ message: "Product availability updated", product });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 
 

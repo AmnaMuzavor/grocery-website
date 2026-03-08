@@ -9,7 +9,7 @@ const Pros = () => {
   <div className="feature-box">
     <div className="icon">🚚</div>
     <h3>Free Delivery</h3>
-    <p>On orders over $50</p>
+    <p>On orders over 500</p>
   </div>
 
 

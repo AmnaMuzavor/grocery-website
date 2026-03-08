@@ -8,13 +8,15 @@ import accountIcon from '../assets/user.png'
 import searchIcon from '../assets/search.png'
 import wishlistIcon from '../assets/Heart.png'
 
+
 const Navbar = () => {
   const navigate = useNavigate();
 const [searchText, setSearchText] = useState("");
 
   const [showSearch, setShowSearch] = useState(false)
   const { user, setUser } = React.useContext(AppContext);
-  
+   const [mobileOpen, setMobileOpen] = useState(false);
+
     const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -22,14 +24,18 @@ const [searchText, setSearchText] = useState("");
     alert("Logged out successfully");
   };
 
-
+console.log("USER:", user);
   return (
     <header className="header">
       <div className="header-container">
         <div className="header-flex">
 
-          <button className="mobile-menu-btn">☰</button>
-
+<button
+  className="mobile-menu-btn"
+  onClick={() => setMobileOpen(true)}
+>
+  ☰
+</button>
           <div className="logo">
             <Link to="/" className="logo">
           
@@ -40,11 +46,25 @@ const [searchText, setSearchText] = useState("");
             </Link>
           </div>
 
-          <nav className="nav">
-            <Link to="/shop">Shop</Link>
+          {/* <nav className="nav"> */}
+          <nav className={`nav ${mobileOpen ? "open" : ""}`}>
+            <button
+              className="close-btn"
+              onClick={() => setMobileOpen(false)}
+            >
+              ✕
+            </button>
+            <Link to="/shopp">Shop</Link>
             <Link to="/ProductCategories">Categories</Link>
             {/* <Link to="/Products">About</Link> */}
+      {user?.role === "admin" && <Link to="/admin/categories">Dashboard</Link>}
           </nav>
+ {mobileOpen && (
+            <div
+              className="overlay"
+              onClick={() => setMobileOpen(false)}
+            ></div>
+          )}
 
           <div className="actions">
 

@@ -1,0 +1,222 @@
+.address-container {
+  padding: 20px;
+  background: rgb(249, 254, 245);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  
+  
+}
+
+.address-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #064e3b;
+  margin-bottom: 20px;
+}
+
+.btn-add-address {
+  width: 100%;
+  padding: 12px;
+  background: #34d399;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-bottom: 20px;
+}
+
+.btn-add-address:hover {
+  background: #10b981;
+}
+
+.address-form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 2px solid #d1fae5;
+}
+
+.address-form-box h3 {
+  color: #064e3b;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #064e3b;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #d1fae5;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #34d399;
+  box-shadow: 0 0 5px rgba(52, 211, 153, 0.3);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-save,
+.btn-cancel {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-save {
+  background: #34d399;
+  color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #10b981;
+}
+
+.btn-save:disabled {
+  background: #a8d5ba;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background: #e5e7eb;
+  color: #064e3b;
+}
+
+.btn-cancel:hover {
+  background: #d1d5db;
+}
+
+.addresses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.address-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #34d399;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow 0.3s;
+}
+
+.address-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.address-info {
+  flex: 1;
+}
+
+.address-line,
+.address-city,
+.address-pincode {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.address-line strong,
+.address-city strong,
+.address-pincode strong {
+  color: #064e3b;
+  font-weight: 600;
+}
+
+.address-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-edit {
+  background: none;
+  color: #215D00;
+}
+
+.btn-edit:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.btn-delete {
+  background: none;
+  color: red;
+}
+
+.btn-delete:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.btn-edit:disabled,
+.btn-delete:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.no-addresses {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .address-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .address-actions {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    flex: 1;
+  }
+}

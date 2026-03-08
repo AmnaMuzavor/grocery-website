@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getCategories } = require("../controllers/categoryController");
 
-// PUBLIC route (no token)
+
 router.get("/categories", getCategories);
 
 module.exports = router;

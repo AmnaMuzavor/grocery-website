@@ -1,5 +1,5 @@
 .wishlist-container {
-  background: #f4f4f4;
+  background: #ffffff;
   padding: 40px 80px;
   min-height: 100vh;
 }
@@ -67,25 +67,25 @@
 
 .wishlist-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 12px;
   align-items: center;
 }
 
 .add-btn {
-  background: #22c55e;
-  color: white;
-  border: none;
-  padding: 8px 18px;
+  color: #22c55e;
+  background-color: white;
+  border: 2px solid #22c55e;
+  padding: 8px 9px;
   border-radius: 8px;
   cursor: pointer;
 }
 
 .remove-btn {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 8px 18px;
+ color: red;
+  background-color: white;
+  border: 2px solid red;
+  padding: 8px 9px;
   border-radius: 8px;
   cursor: pointer;
 }

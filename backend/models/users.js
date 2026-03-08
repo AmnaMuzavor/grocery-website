@@ -26,7 +26,23 @@ module.exports = (sequelize, DataTypes) => {
     role: {
       type: DataTypes.ENUM("customer", "admin"),
       defaultValue: "customer"
-    }
+    },
+    is_verified: {
+  type: DataTypes.BOOLEAN,
+  defaultValue: true
+},
+verification_token: {
+  type: DataTypes.STRING,
+   allowNull: true
+},
+reset_token: {
+  type: DataTypes.STRING,
+   allowNull: true
+},
+reset_token_expiry: {
+  type: DataTypes.DATE,
+   allowNull: true
+}
   }, {
     tableName: "users",
     timestamps: true,

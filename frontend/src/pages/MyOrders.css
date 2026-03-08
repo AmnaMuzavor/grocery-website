@@ -1,0 +1,275 @@
+.myorders-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.myorders-container .breadcrumb {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.myorders-container .breadcrumb a {
+  color: #10b981;
+  text-decoration: none;
+}
+
+.myorders-container h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Loading */
+.myorders-loading {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.myorders-loading .spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #10b981;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* No Orders */
+.no-orders {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.no-orders .empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.no-orders h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.no-orders p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.shop-now-btn {
+  display: inline-block;
+  padding: 12px 30px;
+  background: #10b981;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.shop-now-btn:hover {
+  background: #059669;
+}
+
+/* Simple Order Card */
+.orders-list-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-card-simple {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.order-header-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.order-id-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-id-label {
+  color: #666;
+  font-size: 14px;
+}
+
+.order-id-value {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.order-status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.order-items-simple {
+  margin-bottom: 15px;
+}
+
+.order-item-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.order-item-simple .item-name {
+  flex: 1;
+  color: #333;
+}
+
+.order-item-simple .item-qty {
+  color: #666;
+  margin-right: 20px;
+}
+
+.order-item-simple .item-price {
+  font-weight: bold;
+  color: #333;
+}
+
+.order-footer-simple {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.order-total-simple {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-total-simple span:first-child {
+  color: #666;
+}
+
+.order-total-simple .total-amount {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.cancel-btn-simple {
+  padding: 8px 20px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.cancel-btn-simple:hover {
+  background: #dc2626;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-content h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.modal-note {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.modal-cancel-btn {
+  padding: 10px 20px;
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-cancel-btn:hover {
+  background: #4b5563;
+}
+
+.modal-confirm-btn {
+  padding: 10px 20px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-confirm-btn:hover {
+  background: #dc2626;
+}
+

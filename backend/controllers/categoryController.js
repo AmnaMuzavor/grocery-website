@@ -1,49 +1,3 @@
-// const multer = require("multer");
-// const path = require("path");
-// const { Category } = require("../models");
-
-// const { Category } = require("../models");
-
-// // Create category
-// exports.createCategory = async (req, res) => {
-//   try {
-//     const { name, description, image_url } = req.body;
-
-//     const category = await Category.create({ name, description, image_url });
-//     res.status(201).json({ message: "Category created", category });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
-// // Get all categories
-// exports.getCategories = async (req, res) => {
-//   try {
-//     const categories = await Category.findAll({ order: [["created_at", "DESC"]] });
-//     res.json({ categories });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
-// // Delete category
-// exports.deleteCategory = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const category = await Category.findByPk(id);
-
-//     if (!category) {
-//       return res.status(404).json({ message: "Category not found" });
-//     }
-
-//     await category.destroy();
-//     res.json({ message: "Category deleted" });
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// };
-
-
 const multer = require("multer");
 const path = require("path");
 const { Category } = require("../models");
@@ -101,7 +55,8 @@ exports.createCategory = async (req, res) => {
 exports.getCategories = async (req, res) => {
   try {
     const categories = await Category.findAll({
-      order: [["created_at", "DESC"]],
+      // order: [["created_at", "ASC"]],
+       order: [["category_id", "ASC"]] 
     });
 
     res.json({ categories });
