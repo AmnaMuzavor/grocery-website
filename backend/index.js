@@ -4,11 +4,11 @@ const db = require('./models');
 require("dotenv").config();
 const path = require("path");
 const app = express();
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+// app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+// });
 
 app.use(cors());
 app.use(express.json());
@@ -49,7 +49,7 @@ app.use("/api/admin", adminNotificationRoutes);
 const chatRoutes = require("./routes/chat");
 app.use("/chat", chatRoutes);
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send('Grocery Backend Running');
 });
 
@@ -65,8 +65,8 @@ const verifyToken = require("./middleware/authMiddleware");
 db.sequelize.sync().then(() => {
   console.log("Database connected");
 
-  const PORT = 5001;
+  const PORT = process.env.PORT || 5001;
   app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
   });
 });
