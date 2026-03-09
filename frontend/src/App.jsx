@@ -9,7 +9,7 @@ import MyOrders from './pages/MyOrders.jsx'
 import Auth from './models/Auth.jsx'
 import AddProductAdmin from './pages/AddProductsAdmin.jsx'
 import CategoriesAdmin from './pages/CategoriesAdmin.jsx'
-import admin from './pages/admin.jsx'
+import admin from './pages/Admin.jsx'
 import Signup from './pages/Signup.jsx'
 import Login from './pages/Login.jsx'
 import Account from "./pages/Account";
