@@ -1,6 +1,6 @@
 import React from 'react'
 import Banner from '../assets/Banner1.jpg'
-import './hero.css'
+import './Hero.css'
 import { Link } from "react-router-dom";
 const Hero = () => {
   return (
