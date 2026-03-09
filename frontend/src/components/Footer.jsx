@@ -2,7 +2,7 @@ import "./Footer.css";
 import { Link } from "react-router-dom"; 
 import Insta from "../assets/Insta.png";
 import Twitter from "../assets/twitter.png";
-import Facebook from "../assets/Facebook.png";
+import Facebook from "../assets/facebook.png";
 
 function Footer() {
   return (
