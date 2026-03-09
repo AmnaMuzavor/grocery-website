@@ -74,4 +74,4 @@ db.sequelize.sync()
   .catch(err => {
     console.error("Database connection failed:", err);
   });
-});
+
