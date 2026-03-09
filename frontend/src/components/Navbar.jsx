@@ -3,7 +3,7 @@ import{ Link } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import './Navbar.css'
 import { useNavigate } from "react-router-dom";
-import cartIcon from '../assets/shopping-bag.png'
+import cartIcon from '../assets/Shopping-bag.png'
 import accountIcon from '../assets/user.png'
 import searchIcon from '../assets/search.png'
 import wishlistIcon from '../assets/Heart.png'
