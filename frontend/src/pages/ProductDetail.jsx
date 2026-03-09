@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import "../components/Pdetail.css";
+import "../components/PDetail.css";
 import Suggestions from "../components/Suggestions";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
