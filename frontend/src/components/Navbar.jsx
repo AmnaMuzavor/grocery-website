@@ -5,7 +5,7 @@ import './Navbar.css'
 import { useNavigate } from "react-router-dom";
 import cartIcon from '../assets/Shopping-bag.png'
 import accountIcon from '../assets/User.png'
-import searchIcon from '../assets/search.png'
+import searchIcon from '../assets/Search.png'
 import wishlistIcon from '../assets/Heart.png'
 
 
