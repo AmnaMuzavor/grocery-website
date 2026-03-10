@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminSidebar from "../components/AdminSidebar";
 import "../components/admin.css";
 import toast from "react-hot-toast";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 export default function AddProductAdmin() {
 
   const [showForm, setShowForm] = useState(false);
@@ -41,7 +41,7 @@ const [loadingStockId, setLoadingStockId] = useState(null);
       try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("http://localhost:5001/api/admin/categories", {
+        const res = await fetch("${API}/api/admin/categories", {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -90,7 +90,7 @@ const [loadingStockId, setLoadingStockId] = useState(null);
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5001/api/admin/products", {
+      const res = await fetch("${API}/api/admin/products", {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -232,11 +232,11 @@ if (!validateProduct()) {
       // });
 
 
-      let url = "http://localhost:5001/api/admin/product";
+      let url = "${API}/api/admin/product";
       let method = "POST";
 
       if (isEditing) {
-        url = `http://localhost:5001/api/admin/product/${editId}`;
+        url = `${API}/api/admin/product/${editId}`;
         method = "PUT";
       }
 
@@ -312,7 +312,7 @@ setProduct({
     const token = localStorage.getItem("token");
 
     const res = await fetch(
-      `http://localhost:5001/api/admin/product/${id}/toggle`,
+      `${API}/api/admin/product/${id}/toggle`,
       {
         method: "PUT",
         headers: {
@@ -400,7 +400,7 @@ setProduct({
                         <img
                           src={
                             prod.image_url
-                              ? `http://localhost:5001${prod.image_url}`
+                              ? `${API}${prod.image_url}`
                               : "https://via.placeholder.com/60"
                           }
                           alt="product"
