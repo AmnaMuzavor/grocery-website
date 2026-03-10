@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+const API = "https://grocery-website-bjbz.onrender.com";
 
 export default function CategoriesAdmin() {
   const [showForm, setShowForm] = useState(false);
@@ -22,7 +23,7 @@ const [errors, setErrors] = useState({});
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5001/api/admin/categories", {
+      const res = await axios.get("${API}/api/admin/categories", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data.categories);
@@ -103,7 +104,7 @@ const handleAddCategory = async () => {
     }
 
     const res = await axios.post(
-      "http://localhost:5001/api/admin/category",
+      "${API}/api/admin/category",
       formData,
       {
         headers: {
@@ -147,7 +148,7 @@ const handleUpdateCategory = async () => {
     }
 
     await axios.put(
-      `http://localhost:5001/api/admin/category/${editId}`,
+      `${API}/api/admin/category/${editId}`,
       formData,
       {
         headers: {
@@ -177,7 +178,7 @@ toast.success("Category updated successfully ");
   const handleDelete = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5001/api/admin/category/${id}`, {
+      await axios.delete(`${API}/api/admin/category/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(categories.filter((cat) => cat.category_id !== id));
@@ -220,7 +221,7 @@ toast.success("Category updated successfully ");
 
   {cat.image_url && (
     <img
-      src={`http://localhost:5001${cat.image_url}`}
+      src={`${API}${cat.image_url}`}
       alt={cat.name}
       className="category-image"
     />
