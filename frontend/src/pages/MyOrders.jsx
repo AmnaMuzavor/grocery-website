@@ -71,7 +71,7 @@ const MyOrders = () => {
   const handleCancelOrder = async () => {
     try {
       const response = await axios.post(
-        '${API}/api/payment/cancel-order',
+        `${API}/api/payment/cancel-order`,
         { order_id: selectedOrderId, user_id: user.id }
       );
       if (response.data.success) {
