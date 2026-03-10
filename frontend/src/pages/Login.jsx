@@ -64,7 +64,7 @@ const validate = () => {
 
   try {
     const res = await axios.post(
-      "${API}/api/auth/login",
+      `${API}/api/auth/login`,
       {
         emailOrPhone: emailOrPhone.trim(),
         password: password
