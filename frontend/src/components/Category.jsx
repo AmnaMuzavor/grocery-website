@@ -3,7 +3,7 @@ import "./Category.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 function Category() {
 
   // const categories = [
@@ -32,7 +32,7 @@ function Category() {
     const fetchCategories = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5001/api/categories"
+        "${API}/api/categories"
       );
       setCategories(res.data.categories);
     } catch (error) {
@@ -61,7 +61,7 @@ function Category() {
   >
     {cat.image_url ? (
       <img
-        src={`http://localhost:5001${cat.image_url}`}
+        src={`${API}${cat.image_url}`}
         alt={cat.name}
       
       />
