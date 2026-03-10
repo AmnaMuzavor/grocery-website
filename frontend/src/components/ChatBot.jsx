@@ -40,7 +40,7 @@ function ChatBot() {
     setTyping(true);
 
     try {
-      const response = await fetch("${API}/chat", {
+      const response = await fetch(`${API}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input, userId: user.id })
