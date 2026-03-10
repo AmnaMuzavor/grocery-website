@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const SearchedProducts = () => {
 
   const [products, setProducts] = useState([]);
@@ -15,7 +15,7 @@ const SearchedProducts = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/products?search=${search}`
+        `${API}/api/products?search=${search}`
       );
 
       setProducts(res.data.products);
@@ -50,7 +50,7 @@ const SearchedProducts = () => {
 )}
                 {item.image_url && (
                   <img
-                    src={`http://localhost:5001${item.image_url}`}
+                    src={`${API}${item.image_url}`}
                     alt={item.name}
                   />
                 )}
