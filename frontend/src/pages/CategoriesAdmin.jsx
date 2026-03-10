@@ -23,7 +23,7 @@ const [errors, setErrors] = useState({});
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("${API}/api/admin/categories", {
+      const res = await axios.get(`${API}/api/admin/categories`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(res.data.categories);
@@ -104,7 +104,7 @@ const handleAddCategory = async () => {
     }
 
     const res = await axios.post(
-      "${API}/api/admin/category",
+      `${API}/api/admin/category`,
       formData,
       {
         headers: {
