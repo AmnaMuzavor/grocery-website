@@ -5,7 +5,7 @@ import Filters from "../components/Filters";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { AppContext } from "../context/AppContext";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const location = useLocation();
@@ -20,7 +20,7 @@ const Shop = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/products?search=${search}`
+        `${API}/api/products?search=${search}`
       );
       setProducts(res.data.products);
     } catch (error) {
@@ -80,7 +80,7 @@ const Shop = () => {
   <div className="out-of-stock-badge">Out of Stock</div>
 )}
           <img
-            src={`http://localhost:5001${item.image_url}`}
+            src={`${API}${item.image_url}`}
             alt={item.name}
           />
           <h3>{item.name}</h3>
