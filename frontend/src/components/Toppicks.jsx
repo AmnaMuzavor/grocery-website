@@ -15,7 +15,7 @@ const { addToWishlist, addToCart } = useContext(AppContext);
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("${API}/api/products");
+      const res = await axios.get(`${API}/api/products`);
       setProducts(res.data.products);
     } catch (error) {
       console.log("Failed to fetch products");
