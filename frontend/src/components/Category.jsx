@@ -32,7 +32,7 @@ function Category() {
     const fetchCategories = async () => {
     try {
       const res = await axios.get(
-        "${API}/api/categories"
+        `${API}/api/categories`
       );
       setCategories(res.data.categories);
     } catch (error) {
