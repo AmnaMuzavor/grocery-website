@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Filters from "../components/Filters";
 import { useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const CategoryProducts = () => {
   const { id } = useParams();
 
@@ -14,7 +14,7 @@ const CategoryProducts = () => {
   const fetchProducts = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/products/category/${id}`
+        `${API}/api/products/category/${id}`
       );
       setProducts(res.data.products);
     } catch (error) {
@@ -48,7 +48,7 @@ const CategoryProducts = () => {
 
                 {item.image_url && (
                   <img
-                    src={`http://localhost:5001${item.image_url}`}
+                    src={`${API}${item.image_url}`}
                     alt={item.name}
                   />
                 )}
