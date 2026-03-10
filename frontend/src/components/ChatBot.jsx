@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 function ChatBot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -15,7 +15,7 @@ function ChatBot() {
 
   const addToCart = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/cart/add`, {
+      const response = await fetch(`${API}/api/cart/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, productId })
@@ -40,7 +40,7 @@ function ChatBot() {
     setTyping(true);
 
     try {
-      const response = await fetch("http://localhost:5001/chat", {
+      const response = await fetch("${API}/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input, userId: user.id })
