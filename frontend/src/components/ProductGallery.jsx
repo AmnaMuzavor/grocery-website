@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 const ProductGallery = ({ product }) => {
   const [mainImage, setMainImage] = useState("");
 
-  
+  const API = "https://grocery-website-bjbz.onrender.com";
   useEffect(() => {
     if (product?.image_url) {
       setMainImage(product.image_url);
@@ -17,7 +17,7 @@ const ProductGallery = ({ product }) => {
       
       <img
         className="main-img"
-        src={`http://localhost:5001${mainImage}`}
+        src={`${API}${mainImage}`}
         alt={product.name}
       />
 
@@ -27,7 +27,7 @@ const ProductGallery = ({ product }) => {
           {product.ProductImages.map((img) => (
             <img
               key={img.id}
-              src={`http://localhost:5001${img.image_url}`}
+              src={`${API}${img.image_url}`}
               alt=""
               className={mainImage === img.image_url ? "active" : ""}
               onClick={() => setMainImage(img.image_url)}
