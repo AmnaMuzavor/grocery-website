@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const Login = () => {
   const { setUser } = useContext(AppContext);
 
@@ -64,7 +64,7 @@ const validate = () => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5001/api/auth/login",
+      "${API}/api/auth/login",
       {
         emailOrPhone: emailOrPhone.trim(),
         password: password
