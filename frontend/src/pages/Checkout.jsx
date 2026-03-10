@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 import "./checkout.css";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 function Checkout() {
   const { cart, user, clearCart } = useContext(AppContext);
   const navigate = useNavigate();
@@ -189,7 +189,7 @@ function Checkout() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/payment/create-order",
+        "${API}/api/payment/create-order",
         { user_id: user.id }
       );
 
@@ -211,7 +211,7 @@ function Checkout() {
           handler: async function (paymentResponse) {
             try {
               await axios.post(
-                "http://localhost:5001/api/payment/verify",
+                "${API}/api/payment/verify",
                 {
                   razorpay_order_id: paymentResponse.razorpay_order_id,
                   razorpay_payment_id: paymentResponse.razorpay_payment_id,
@@ -311,7 +311,7 @@ function Checkout() {
         shipping_details: shippingAddress,
       };
 
-      const response = await axios.post("http://localhost:5001/api/payment/create-cod", orderData);
+      const response = await axios.post("${API}/api/payment/create-cod", orderData);
 
       // Use the actual database order ID
       setOrderId(response.data.order_id);
