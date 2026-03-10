@@ -5,7 +5,7 @@ import "../components/PDetail.css";
 import Suggestions from "../components/Suggestions";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
   const fetchProduct = async () => {
     try {
-      const res = await axios.get(`http://localhost:5001/api/products/${id}`);
+      const res = await axios.get(`${API}/api/products/${id}`);
 
       const p = res.data.product;
       setProduct(p);
@@ -27,7 +27,7 @@ const ProductDetail = () => {
       setMainImage(p.image_url || p.ProductImages?.[0]?.image_url || "");
 
       const cat = await axios.get(
-      `http://localhost:5001/api/categories/${res.data.product.category_id}`
+      `${API}/api/categories/${res.data.product.category_id}`
     );
 
     setCategory(cat.data.category);
@@ -64,7 +64,7 @@ const ProductDetail = () => {
           <div className="main-image-wrap">
             <img
               className="main-img"
-              src={`http://localhost:5001${mainImage}`}
+              src={`${API}${mainImage}`}
               alt={product.name}
             />
           </div>
