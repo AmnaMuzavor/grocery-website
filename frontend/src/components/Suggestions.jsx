@@ -49,7 +49,7 @@ const Suggestions = ({ categoryId, currentId }) => {
 
             {item.image_url && (
               <img
-                src={`http://localhost:5001${item.image_url}`}
+                src={`${API}{item.image_url}`}
                 alt={item.name}
               />
             )}
