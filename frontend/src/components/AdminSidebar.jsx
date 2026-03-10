@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./admin.css";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const AdminSidebar = ({ isOpen, setIsOpen }) => {
 
   const [notifications, setNotifications] = useState(null);
@@ -16,7 +16,7 @@ const fetchNotifications = async () => {
   try {
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:5001/api/admin/notifications", {
+    const res = await fetch("${API}/api/admin/notifications", {
       headers: {
         Authorization: `Bearer ${token}`
       }
