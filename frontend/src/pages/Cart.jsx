@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import "./cart.css";
 import { AppContext } from '../context/AppContext';
 import { Link, useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 function Cart() {
   const { cart, removeFromCart, increaseQty, decreaseQty } = useContext(AppContext);
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function Cart() {
             <img
               src={
                 product.image_url
-                  ? `http://localhost:5001${product.image_url}`
+                  ? `${API}${product.image_url}`
                   : product.image
               }
               alt={product.name}
