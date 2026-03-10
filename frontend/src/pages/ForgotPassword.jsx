@@ -56,7 +56,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
 
@@ -64,7 +64,7 @@ const ForgotPassword = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5001/api/auth/forgot-password", {
+      await axios.post("${API}/api/auth/forgot-password", {
         email
       });
 
