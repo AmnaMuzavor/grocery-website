@@ -41,7 +41,7 @@ const [loadingStockId, setLoadingStockId] = useState(null);
       try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("${API}/api/admin/categories", {
+        const res = await fetch(`${API}/api/admin/categories`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -90,7 +90,7 @@ const [loadingStockId, setLoadingStockId] = useState(null);
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("${API}/api/admin/products", {
+      const res = await fetch(`${API}/api/admin/products`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -232,7 +232,7 @@ if (!validateProduct()) {
       // });
 
 
-      let url = "${API}/api/admin/product";
+      let url = `${API}/api/admin/product`;
       let method = "POST";
 
       if (isEditing) {
