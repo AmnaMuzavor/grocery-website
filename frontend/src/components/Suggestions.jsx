@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 
 const Suggestions = ({ categoryId, currentId }) => {
   const [products, setProducts] = useState([]);
@@ -10,7 +10,7 @@ const Suggestions = ({ categoryId, currentId }) => {
   const fetchSuggestions = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/products/category/${categoryId}`
+        `${API}/api/products/category/${categoryId}`
       );
 
       // remove current product
