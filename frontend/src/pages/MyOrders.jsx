@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import './MyOrders.css';
+const API = "https://grocery-website-bjbz.onrender.com";
 
 const parseProducts = (products) => {
   if (!products) return [];
@@ -38,7 +39,7 @@ const MyOrders = () => {
   const fetchOrders = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/api/payment/orders/${user.id}`
+        `${API}/api/payment/orders/${user.id}`
       );
       if (response.data.success) {
         // Sort orders: confirmed/pending first, then delivered, then cancelled at bottom
@@ -70,7 +71,7 @@ const MyOrders = () => {
   const handleCancelOrder = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5001/api/payment/cancel-order',
+        '${API}/api/payment/cancel-order',
         { order_id: selectedOrderId, user_id: user.id }
       );
       if (response.data.success) {
