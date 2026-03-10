@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const ResetPassword = () => {
   const { token } = useParams();
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const ResetPassword = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5001/api/auth/reset-password", {
+      await axios.post("${API}/api/auth/reset-password", {
         token,
         newPassword
       });
