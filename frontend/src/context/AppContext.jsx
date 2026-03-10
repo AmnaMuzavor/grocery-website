@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+const API = "https://grocery-website-bjbz.onrender.com/api";
 export const AppContext = createContext(null);
 
 const AppContextProvider = ({ children }) => {
@@ -22,7 +22,7 @@ const AppContextProvider = ({ children }) => {
 
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/cart/${userId}`
+        `${API}/cart/${userId}`
       );
       setCart(res.data || []);
     } catch (err) {
@@ -47,7 +47,7 @@ const AppContextProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5001/api/cart/add",
+        '${API}/cart/add',
         {
           user_id: user.id,
           product_id: product.id
@@ -71,7 +71,7 @@ const AppContextProvider = ({ children }) => {
   const removeFromCart = async (product_id) => {
     try {
       await axios.delete(
-        `http://localhost:5001/api/cart/remove/${user.id}/${product_id}`
+        `${API}/cart/remove/${user.id}/${product_id}`
       );
 
       toast.success("Removed from cart");
@@ -86,7 +86,7 @@ const AppContextProvider = ({ children }) => {
   const increaseQty = async (product_id) => {
     try {
       await axios.put(
-        `http://localhost:5001/api/cart/increase`,
+        `${API}/cart/increase`,
         {
           user_id: user.id,
           product_id
@@ -103,7 +103,7 @@ const AppContextProvider = ({ children }) => {
   const decreaseQty = async (product_id) => {
     try {
       await axios.put(
-        `http://localhost:5001/api/cart/decrease`,
+        `${API}/cart/decrease`,
         {
           user_id: user.id,
           product_id
@@ -120,7 +120,7 @@ const AppContextProvider = ({ children }) => {
   const clearCart = async () => {
     try {
       await axios.delete(
-        `http://localhost:5001/api/cart/clear/${user.id}`
+        `${API}/cart/clear/${user.id}`
       );
 
       setCart([]);
@@ -136,7 +136,7 @@ const AppContextProvider = ({ children }) => {
 
     try {
       const res = await axios.get(
-        `http://localhost:5001/api/wishlist/${user.id}`
+        `${API}/wishlist/${user.id}`
       );
       setWishlist(res.data);
     } catch (err) {
@@ -156,7 +156,7 @@ const AppContextProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5001/api/wishlist/add",
+        '${API}/wishlist/add',
         {
           user_id: user.id,
           product_id: product.id
@@ -179,7 +179,7 @@ const AppContextProvider = ({ children }) => {
   const removeFromWishlist = async (wishlist_id) => {
     try {
       await axios.delete(
-        `http://localhost:5001/api/wishlist/remove/${wishlist_id}`
+        `${API}/wishlist/remove/${wishlist_id}`
       );
 
       toast.success("Removed from wishlist");
