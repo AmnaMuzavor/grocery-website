@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminSidebar from "../components/AdminSidebar";
 import "../components/admin.css";
+const API = "https://grocery-website-bjbz.onrender.com";
 
 export default function NotificationsAdmin() {
 
@@ -21,7 +22,7 @@ export default function NotificationsAdmin() {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        "http://localhost:5001/api/admin/notifications",
+        "${API}/api/admin/notifications",
         {
           headers: {
             Authorization: `Bearer ${token}`
