@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import Filters from "./Filters";
 import { useNavigate } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 
 const Toppicks = () => {
 
@@ -15,7 +15,7 @@ const { addToWishlist, addToCart } = useContext(AppContext);
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5001/api/products");
+      const res = await axios.get("${API}/api/products");
       setProducts(res.data.products);
     } catch (error) {
       console.log("Failed to fetch products");
@@ -56,7 +56,7 @@ const { addToWishlist, addToCart } = useContext(AppContext);
 
 {item.image_url && (
   <img
-    src={`http://localhost:5001${item.image_url}`}
+    src={`${API}${item.image_url}`}
     alt={item.name}
   />
 
