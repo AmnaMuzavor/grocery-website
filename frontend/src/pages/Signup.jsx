@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const Signup = () => {
   const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const Signup = () => {
     if (!validate()) return;
 
     try {
-      await axios.post("http://localhost:5001/api/auth/signup", {
+      await axios.post("${API}/api/auth/signup", {
         name: form.name.trim(),
         email: form.email,
         phone: form.phone,
