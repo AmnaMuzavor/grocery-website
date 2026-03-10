@@ -47,7 +47,7 @@ const AppContextProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        '${API}/cart/add',
+        `${API}/cart/add`,
         {
           user_id: user.id,
           product_id: product.id
@@ -156,7 +156,7 @@ const AppContextProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        '${API}/wishlist/add',
+        `${API}/wishlist/add`,
         {
           user_id: user.id,
           product_id: product.id
