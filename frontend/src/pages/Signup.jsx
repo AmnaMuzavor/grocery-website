@@ -64,7 +64,7 @@ const Signup = () => {
     if (!validate()) return;
 
     try {
-      await axios.post("${API}/api/auth/signup", {
+      await axios.post(`${API}/api/auth/signup`, {
         name: form.name.trim(),
         email: form.email,
         phone: form.phone,
