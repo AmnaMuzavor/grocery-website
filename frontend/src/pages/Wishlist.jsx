@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./Wishlist.css";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
-
+const API = "https://grocery-website-bjbz.onrender.com";
 const Wishlist = () => {
   const { wishlist, removeFromWishlist, addToCart } = useContext(AppContext);
 
@@ -25,7 +25,7 @@ const Wishlist = () => {
         return (
           <div className="wishlist-item" key={item.wishlist_id}>
             <img
-              src={`http://localhost:5001${item.Product.image_url}`}
+              src={`${API}${item.Product.image_url}`}
               alt={item.Product.name}
               className="wishlist-img"
             />
