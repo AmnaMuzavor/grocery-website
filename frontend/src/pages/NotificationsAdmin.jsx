@@ -22,7 +22,7 @@ export default function NotificationsAdmin() {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        "${API}/api/admin/notifications",
+        `${API}/api/admin/notifications`,
         {
           headers: {
             Authorization: `Bearer ${token}`
