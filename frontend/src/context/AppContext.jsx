@@ -2,12 +2,15 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+
 const API = "https://grocery-website-bjbz.onrender.com/api";
+
 export const AppContext = createContext(null);
 
 const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
+  // Load user from localStorage
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
@@ -16,43 +19,53 @@ const AppContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
 
+  // Get correct userId safely
+  const getUserId = () => {
+    return user?.id || user?.user_id || null;
+  };
+
+  // ================= CART =================
+
   const fetchCart = async (userIdParam) => {
-    const userId = userIdParam || user?.id;
-    if (!userId) return;
+    const userId = userIdParam || getUserId();
+
+    if (!userId) {
+      console.log("No userId found");
+      return;
+    }
 
     try {
-      const res = await axios.get(
-        `${API}/cart/${userId}`
-      );
+      const res = await axios.get(`${API}/cart/${userId}`);
+      console.log("CART DATA:", res.data);
       setCart(res.data || []);
     } catch (err) {
       console.error("FETCH CART ERROR:", err);
     }
-    
   };
 
   useEffect(() => {
-    if (user?.id) {
-      fetchCart(user.id);
+    const userId = getUserId();
+
+    if (userId) {
+      fetchCart(userId);
     } else {
       setCart([]);
     }
   }, [user]);
 
   const addToCart = async (product) => {
-    if (!user) {
+    const userId = getUserId();
+
+    if (!userId) {
       toast.error("Please login first");
       return;
     }
 
     try {
-      const res = await axios.post(
-        `${API}/cart/add`,
-        {
-          user_id: user.id,
-          product_id: product.id
-        }
-      );
+      const res = await axios.post(`${API}/cart/add`, {
+        user_id: userId,
+        product_id: product.id
+      });
 
       if (res.data.exists) {
         toast("Quantity increased");
@@ -60,7 +73,7 @@ const AppContextProvider = ({ children }) => {
         toast.success("Added to cart");
       }
 
-      await fetchCart(user.id); 
+      await fetchCart(userId);
 
     } catch (err) {
       toast.error("Something went wrong");
@@ -69,14 +82,12 @@ const AppContextProvider = ({ children }) => {
   };
 
   const removeFromCart = async (product_id) => {
+    const userId = getUserId();
+
     try {
-      await axios.delete(
-        `${API}/cart/remove/${user.id}/${product_id}`
-      );
-
+      await axios.delete(`${API}/cart/remove/${userId}/${product_id}`);
       toast.success("Removed from cart");
-      await fetchCart(user.id);
-
+      await fetchCart(userId);
     } catch (err) {
       toast.error("Failed to remove");
       console.error(err);
@@ -84,45 +95,40 @@ const AppContextProvider = ({ children }) => {
   };
 
   const increaseQty = async (product_id) => {
+    const userId = getUserId();
+
     try {
-      await axios.put(
-        `${API}/cart/increase`,
-        {
-          user_id: user.id,
-          product_id
-        }
-      );
+      await axios.put(`${API}/cart/increase`, {
+        user_id: userId,
+        product_id
+      });
 
-      await fetchCart(user.id);
-
+      await fetchCart(userId);
     } catch (err) {
       console.error(err);
     }
   };
 
   const decreaseQty = async (product_id) => {
+    const userId = getUserId();
+
     try {
-      await axios.put(
-        `${API}/cart/decrease`,
-        {
-          user_id: user.id,
-          product_id
-        }
-      );
+      await axios.put(`${API}/cart/decrease`, {
+        user_id: userId,
+        product_id
+      });
 
-      await fetchCart(user.id);
-
+      await fetchCart(userId);
     } catch (err) {
       console.error(err);
     }
   };
 
   const clearCart = async () => {
-    try {
-      await axios.delete(
-        `${API}/cart/clear/${user.id}`
-      );
+    const userId = getUserId();
 
+    try {
+      await axios.delete(`${API}/cart/clear/${userId}`);
       setCart([]);
       toast.success("Cart cleared");
     } catch (err) {
@@ -130,15 +136,15 @@ const AppContextProvider = ({ children }) => {
     }
   };
 
+  // ================= WISHLIST =================
 
   const fetchWishlist = async () => {
-    if (!user) return;
+    const userId = getUserId();
+    if (!userId) return;
 
     try {
-      const res = await axios.get(
-        `${API}/wishlist/${user.id}`
-      );
-      setWishlist(res.data);
+      const res = await axios.get(`${API}/wishlist/${userId}`);
+      setWishlist(res.data || []);
     } catch (err) {
       console.error(err);
     }
@@ -149,19 +155,18 @@ const AppContextProvider = ({ children }) => {
   }, [user]);
 
   const addToWishlist = async (product) => {
-    if (!user) {
+    const userId = getUserId();
+
+    if (!userId) {
       toast.error("Please login first");
       return;
     }
 
     try {
-      const res = await axios.post(
-        `${API}/wishlist/add`,
-        {
-          user_id: user.id,
-          product_id: product.id
-        }
-      );
+      const res = await axios.post(`${API}/wishlist/add`, {
+        user_id: userId,
+        product_id: product.id
+      });
 
       if (res.data.exists) {
         toast("Already in wishlist");
@@ -178,10 +183,7 @@ const AppContextProvider = ({ children }) => {
 
   const removeFromWishlist = async (wishlist_id) => {
     try {
-      await axios.delete(
-        `${API}/wishlist/remove/${wishlist_id}`
-      );
-
+      await axios.delete(`${API}/wishlist/remove/${wishlist_id}`);
       toast.success("Removed from wishlist");
       fetchWishlist();
     } catch (err) {
@@ -189,6 +191,8 @@ const AppContextProvider = ({ children }) => {
       console.error(err);
     }
   };
+
+  // ================= CONTEXT VALUE =================
 
   const value = {
     navigate,
