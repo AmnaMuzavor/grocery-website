@@ -2,16 +2,11 @@ const express = require("express");
 const router = express.Router();
 const { Cart, Product } = require("../models");
 
-
 const parseProducts = (cart) => {
   if (!cart || !cart.products) return [];
-  let products = cart.products;
-  
 
-  if (Array.isArray(products)) {
-    return products;
-  }
-  
+  let products = cart.products;
+
   if (typeof products === "string") {
     try {
       products = JSON.parse(products);
@@ -19,9 +14,19 @@ const parseProducts = (cart) => {
       return [];
     }
   }
-  
-  return Array.isArray(products) ? products : [];
+
+  if (Array.isArray(products)) {
+    return products.map(item => {
+      if (typeof item === "number") {
+        return { product_id: item, quantity: 1 };
+      }
+      return item;
+    });
+  }
+
+  return [];
 };
+
 
 router.get("/:user_id", async (req, res) => {
   try {
