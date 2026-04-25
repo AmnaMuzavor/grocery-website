@@ -4,11 +4,16 @@ const db = require('./models');
 require("dotenv").config();
 const path = require("path");
 const app = express();
+const fs = require("fs");  
 // app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 // });
+const uploadDir = "uploads/products";
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 app.use(cors());
 app.use(express.json());
