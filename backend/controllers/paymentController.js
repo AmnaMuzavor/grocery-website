@@ -4,8 +4,8 @@ const { Order, Payment, Cart, Product } = require("../models");
 
 // Razorpay instance with keys from rzp-key.csv
 const razorpay = new Razorpay({
-  key_id: "rzp_test_SMd5kOJJNHcMit",
-  key_secret: "mgBd6fEHOYoCfh26pt2daDtY"
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET
 });
 
 // Parse products - handle both stringified and non-stringified JSON
