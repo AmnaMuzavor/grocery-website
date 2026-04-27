@@ -202,7 +202,7 @@ function Checkout() {
 
       script.onload = () => {
         const options = {
-          key: "rzp_test_SMd5kOJJNHcMit",
+          key: "rzp_live_SiKXppWm3Uhcc0",
           amount: razorpayOrder.amount,
           currency: "INR",
           name: "Essentials Grocery",
